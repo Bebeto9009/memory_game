@@ -1,17 +1,43 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Strona</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="css/style.min.css">
-        <script src="js/script.min.js" defer></script>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+
+<form id="game">
+    <div class="game__header">
+        <p>The game</p>
+    </div>
+    <div class="game__section">
+        <input type="text" class="game-ordinar-numbers" placeholder="ordinar number" required disabled/>
+        <input type="text" class="game-name" placeholder="name" required disabled/>
+    </div>
+    <button class="btn-add">Add new player</button>
+</form>
 
 
-    </body>
+<!--
+Waszym zadaniem jest stworzyć listę graczy.
+Na stronie ma być od razu widoczny:
+User 1 Computer
+Ma być on odbierany z JSONa, którego sami sobie stworzyćie (jako zmienna, lub jako json np na githubie)
+Reszta użytkowników ma mieć opcje CRUD: Create, Read, Update, Delete. (tak, wszystkie prócz pierwszej)
+Po dodaniu użytkownika i odświeżeniu strony ma być ona nadal widoczny, mimo, że nie ma go w kodzie - użyjcie LocalStorage.
+
+HTML + CSS jest pisany przez Was dowolnie. Można używać preprocesorów, ale bibliotek już nie.
+Vanilla JS only.
+
+Oceniena jest również stylistyka i Wasze poczucie / rozumienie dobrego UX.
+
+LP | Nazwa gracza
+i po odpaleniu strony ma być pierwszy rekord dodany
+1 | Computer
+-->
+
+<script src="js/script.min.js"></script>
+</body>
 </html>
