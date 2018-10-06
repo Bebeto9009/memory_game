@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
     <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
 
@@ -13,8 +14,13 @@
         <p>The game</p>
     </div>
     <div class="game__section">
-        <input type="text" class="game-ordinar-numbers" placeholder="ordinar number" required disabled/>
-        <input type="text" class="game-name" placeholder="name" required disabled/>
+        <div class="game__row">
+            <input type="text" class="game-ordinar-numbers" placeholder="ordinar number" disabled/>
+            <input type="text" class="game-name" placeholder="name" required disabled/>
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-check"></i>
+        </div>
     </div>
     <button class="btn-add">Add new player</button>
 </form>
