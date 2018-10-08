@@ -6,6 +6,21 @@ let btnNewPlayer = document.querySelector('.btn-add');
 let noPlayer = document.querySelector('.game-ordinar-numbers');
 let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
+let elements = document.querySelectorAll('.fa-trash-alt');
+
+elements.forEach(element => {
+    element.addEventListener('click', event => console.log(event));
+})
+
+elements.forEach(function(element){
+    element.addEventListener('click', function(event){
+        if(element.target && element.target.id== 'brnPrepend')
+    })
+})
+
+trashIcon.addEventListener('click', function(event){
+    console.log(event)
+})
 
 //**************** fetch ****************//
 fetch(firstPlayer)
@@ -82,8 +97,6 @@ function addPlayer () {
         let btnAdd = document.querySelectorAll('#accept'+table[i]);
     }
 })();
-
-btnAdd.addEventListener('click', addPlayer);
 
 // /**************** add new player inputs ****************/
 // let count=1;
