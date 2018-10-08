@@ -1,4 +1,4 @@
-const firstPlayer = 'https://raw.githubusercontent.com/Bebeto9009/the_game/master/player.json';
+const firstPlayer = 'https://raw.githubusercontent.com/Bebeto9009/list_of_players/master/player.json';
 let obj = [];
 let playerArray = [];
 let list = document.querySelector('.game__section');
@@ -8,19 +8,50 @@ let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
 let elements = document.querySelectorAll('.fa-trash-alt');
 
-elements.forEach(element => {
-    element.addEventListener('click', event => console.log(event));
+// document.addEventListener('click', function(e){
+//     if(e.target && e.target.id === 'row') {
+//         console.log(e);
+//         console.log('udalo sie')
+//         gameRow.parentNode.removeChild(gameRow);
+//     }
+// })
+
+document.getElementById('row').addEventListener('click', function(e) {
+    if(e.target && e.target.className === 'fa-trash') {
+        console.log('udalo sie');
+        console.log(e);
+        gameRow.parentNode.removeChild(gameRow);
+    }
 })
 
-elements.forEach(function(element){
-    element.addEventListener('click', function(event){
-        if(element.target && element.target.id== 'brnPrepend')
-    })
-})
+// document.getElementById("row").addEventListener("click", function(event) {
+//     if ( event.target.className === 'fa-trash') {
+//         //Do your magic
+//         gameRow.parentNode.removeChild(gameRow);
+//     }
+// });
 
-trashIcon.addEventListener('click', function(event){
-    console.log(event)
-})
+
+// document.getElementById("row").addEventListener("click", function(event) {
+//     if ( event.target.className === 'fa-trash') {
+//         //Do your magic
+//         gameRow.parentNode.removeChild(gameRow);
+//     }
+// });
+
+// elements.forEach(element => {
+//     element.addEventListener('click', event => console.log(event));
+// })
+//
+// elements.forEach(function(element){
+//     element.addEventListener('click', function(event){
+//         if(element.target && element.target.id== 'brnPrepend')
+//     })
+// })
+//
+// trashIcon.addEventListener('click', function(event){
+//     console.log(event)
+// })
 
 //**************** fetch ****************//
 fetch(firstPlayer)
@@ -43,16 +74,12 @@ fetch(firstPlayer)
     }); //fetch json first player
 //**************** fetch ****************//
 
-let table = [];
-let click = 0;
-let j = 1;
-function addNewRow(no) {
-    click += j;
-    table.push(click);
+
+function addNewRow() {
 
     let playersRow = document.createElement('div');
     playersRow.classList.add('game__row');
-    playersRow.id = 'row'+click;
+    playersRow.id = 'row';
 
     let noNewPlayer = document.createElement('input');
     noNewPlayer.classList.add('game-ordinar-numbers');
@@ -64,15 +91,15 @@ function addNewRow(no) {
 
     let editPlayer = document.createElement('i');
     editPlayer.classList.add('fas', 'fa-edit');
-    editPlayer.id = 'edit'+click;
+    editPlayer.id = 'edit';
 
     let removePlayer = document.createElement('i');
     removePlayer.classList.add('fas', 'fa-trash-alt');
-    removePlayer.id = 'remove'+click;
+    removePlayer.id = 'remove';
 
     let acceptNewPlayer = document.createElement('i');
     acceptNewPlayer.classList.add('fas', 'fa-check');
-    acceptNewPlayer.id = 'accept'+click;
+    acceptNewPlayer.id = 'accept';
 
     list.appendChild(playersRow);
     playersRow.appendChild(noNewPlayer);
@@ -87,16 +114,16 @@ btnNewPlayer.addEventListener('click', function(event) {
     addNewRow();
 });
 
-function addPlayer () {
+// function addPlayer () {
+//
+//     console.log('player został dodany ');
+// }
 
-    console.log('player został dodany ');
-}
-
-(function(){
-    for (let i = 0; i < table.length; i++){
-        let btnAdd = document.querySelectorAll('#accept'+table[i]);
-    }
-})();
+// (function(){
+//     for (let i = 0; i < table.length; i++){
+//         let btnAdd = document.querySelectorAll('#accept'+table[i]);
+//     }
+// })();
 
 // /**************** add new player inputs ****************/
 // let count=1;
