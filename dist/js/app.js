@@ -12,12 +12,14 @@ let elementsNum = elements.length;
 document.addEventListener('click', function(e){
     if(e.path[0].className.includes('fa-trash-alt')) {
         e.path[0].parentElement.remove();
-        console.log(e.path);
+    }
+    if(e.path[0].className.includes('fa-check')) {
+        e.path[1].childNodes[1].disabled=true;
+    }
+    if(e.path[0].className.includes('fa-edit')) {
+        e.path[1].childNodes[1].disabled=false;
     }
 })
-
-
-
 
 
 // document.getElementById('row').addEventListener('click', function(e) {

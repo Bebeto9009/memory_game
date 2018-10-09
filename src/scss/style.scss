@@ -35,12 +35,17 @@ body {
     background-color: blue;
 }
 
+.game__row:first-child {
+    margin-left: 0px;
+}
+
 .game__row {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     margin-bottom: 10px;
+    margin-left: 39px;
 }
 
 .game-ordinar-numbers {
