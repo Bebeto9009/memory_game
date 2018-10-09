@@ -12,6 +12,7 @@ let elementsNum = elements.length;
 document.addEventListener('click', function(e){
     if(e.path[0].className.includes('fa-trash-alt')) {
         e.path[0].parentElement.remove();
+        console.log(e.path);
     }
 })
 
@@ -70,7 +71,7 @@ fetch(firstPlayer)
         if(response.ok) {
             return response.json();
         } else {
-            throw new Error ('Błąd połączenia');
+            throw new Error();
         }
 })
     .then(function (data) {
@@ -81,7 +82,7 @@ fetch(firstPlayer)
         namePlayer.value = playerArray[0][1];
     })
     .catch(function (error) {
-        console.log("Błąd: ", error);
+        console.log(error);
     }); //fetch json first player
 //**************** fetch ****************//
 
@@ -123,8 +124,8 @@ function addNewRow() {
 btnNewPlayer.addEventListener('click', function(event) {
     event.preventDefault();
     addNewRow();
-    // el = document.querySelectorAll('.fa-trash-alt');
-    // elNum = el.length;
+    // let el = document.querySelectorAll('.fa-trash-alt');
+    // let elNum = el.length;
     // for (i = 0; i < elNum; i++){
     //     console.log(el[i])
     //     el[i].addEventListener('click', function(e) {
