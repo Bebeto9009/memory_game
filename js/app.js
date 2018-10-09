@@ -7,25 +7,36 @@ let noPlayer = document.querySelector('.game-ordinar-numbers');
 let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
 let elements = document.querySelectorAll('.fa-trash-alt');
+let elementsNum = elements.length;
 
-// document.addEventListener('click', function(e){
-//     if(e.target && e.target.id === 'row') {
+document.addEventListener('click', function(e){
+    if(e.path[0].className.includes('fa-trash-alt')) {
+        e.path[0].parentElement.remove();
+    }
+})
+
+
+
+
+
+// document.getElementById('row').addEventListener('click', function(e) {
+//     if(e.target && e.target.className === 'fa-trash-alt') {
+//         console.log('udalo sie');
 //         console.log(e);
-//         console.log('udalo sie')
+//         // gameRow.parentNode.removeChild(gameRow);
+//     }
+// });
+
+// document.getElementById('row').addEventListener('click', function(e) {
+//     let classes = e.target.className;
+//     if(classes = ".fa-trash-alt"){
 //         gameRow.parentNode.removeChild(gameRow);
 //     }
 // })
 
-document.getElementById('row').addEventListener('click', function(e) {
-    if(e.target && e.target.className === 'fa-trash') {
-        console.log('udalo sie');
-        console.log(e);
-        gameRow.parentNode.removeChild(gameRow);
-    }
-})
 
 // document.getElementById("row").addEventListener("click", function(event) {
-//     if ( event.target.className === 'fa-trash') {
+//     if ( event.target.className === 'fa-trash-alt') {
 //         //Do your magic
 //         gameRow.parentNode.removeChild(gameRow);
 //     }
@@ -79,7 +90,7 @@ function addNewRow() {
 
     let playersRow = document.createElement('div');
     playersRow.classList.add('game__row');
-    playersRow.id = 'row';
+    // playersRow.id = 'row';
 
     let noNewPlayer = document.createElement('input');
     noNewPlayer.classList.add('game-ordinar-numbers');
@@ -91,15 +102,15 @@ function addNewRow() {
 
     let editPlayer = document.createElement('i');
     editPlayer.classList.add('fas', 'fa-edit');
-    editPlayer.id = 'edit';
+    // editPlayer.id = 'edit';
 
     let removePlayer = document.createElement('i');
     removePlayer.classList.add('fas', 'fa-trash-alt');
-    removePlayer.id = 'remove';
+    // removePlayer.id = 'remove';
 
     let acceptNewPlayer = document.createElement('i');
     acceptNewPlayer.classList.add('fas', 'fa-check');
-    acceptNewPlayer.id = 'accept';
+    // acceptNewPlayer.id = 'accept';
 
     list.appendChild(playersRow);
     playersRow.appendChild(noNewPlayer);
@@ -112,7 +123,17 @@ function addNewRow() {
 btnNewPlayer.addEventListener('click', function(event) {
     event.preventDefault();
     addNewRow();
+    // el = document.querySelectorAll('.fa-trash-alt');
+    // elNum = el.length;
+    // for (i = 0; i < elNum; i++){
+    //     console.log(el[i])
+    //     el[i].addEventListener('click', function(e) {
+    //         e.currentTarget.parentNode.remove();
+    //         console.log(e);
+    //     });
+    // }
 });
+
 
 // function addPlayer () {
 //
