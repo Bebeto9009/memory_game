@@ -8,6 +8,7 @@ let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
 let elements = document.querySelectorAll('.fa-trash-alt');
 let elementsNum = elements.length;
+let counter = 2;
 
 //**************** fetch ****************//
 fetch(firstPlayer)
@@ -32,7 +33,6 @@ fetch(firstPlayer)
 
 
 function addNewRow() {
-
     let playersRow = document.createElement('div');
     playersRow.classList.add('game__row');
     // playersRow.id = 'row';
@@ -40,6 +40,7 @@ function addNewRow() {
     let noNewPlayer = document.createElement('input');
     noNewPlayer.classList.add('game-ordinar-numbers');
     noNewPlayer.disabled = true;
+    noNewPlayer.value = counter;
 
     let namePlayer = document.createElement('input');
     namePlayer.classList.add('game-name');
@@ -64,7 +65,7 @@ function addNewRow() {
     playersRow.appendChild(editPlayer);
     playersRow.appendChild(acceptNewPlayer);
     playersRow.appendChild(removePlayer);
-
+    counter++;
 }
 
 btnNewPlayer.addEventListener('click', function(event) {
@@ -75,6 +76,7 @@ btnNewPlayer.addEventListener('click', function(event) {
 document.addEventListener('click', function(e) {
     if (e.target.className.includes('fa-trash-alt')) {
         e.target.parentElement.remove();
+        counter--;
     }
 
     if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[1].value == '')) {
