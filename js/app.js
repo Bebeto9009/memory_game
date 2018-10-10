@@ -6,8 +6,8 @@ let btnNewPlayer = document.querySelector('.btn-add');
 let noPlayer = document.querySelector('.game-ordinar-numbers');
 let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
-let elements = document.querySelectorAll('.fa-trash-alt');
-let elementsNum = elements.length;
+// let elements = document.querySelectorAll('.fa-trash-alt');
+// let elementsNum = elements.length;
 let counter = 2;
 
 //**************** fetch ****************//
@@ -68,17 +68,35 @@ function addNewRow() {
     counter++;
 }
 
+function disableEdit(){
+    let editIcon = document.querySelectorAll('.fa-edit');
+    for (let i = 0; i < editIcon.length; i++){
+        editIcon[i].classList.add('no-click');
+        console.log(editIcon);
+    }
+}
+
+function enableEdit(){
+    let editIcon = document.querySelectorAll('.fa-edit');
+    for (let i = 0; i < editIcon.length; i++){
+        editIcon[i].classList.remove('no-click');
+        console.log(editIcon);
+    }
+}
+
 btnNewPlayer.addEventListener('click', function(event) {
     event.preventDefault();
     addNewRow();
+    this.disabled = true;
+    disableEdit();
 }); // create row for new player
 
 document.addEventListener('click', function(e) {
     if (e.target.className.includes('fa-trash-alt')) {
         e.target.parentElement.remove();
         counter--;
+        btnNewPlayer.disabled = false;
     }
-
     if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[1].value == '')) {
        return;
     } else {
@@ -86,11 +104,14 @@ document.addEventListener('click', function(e) {
             e.target.parentNode.childNodes[1].disabled = true; // disable name input
             e.target.parentElement.childNodes[2].style.display = 'block'; // show edit icon
             e.target.parentElement.childNodes[3].style.display = 'none'; // hide check icon
+            btnNewPlayer.disabled = false;
+            enableEdit()
         }
         if (e.target.className.includes('fa-edit')) {
             e.target.parentNode.childNodes[1].disabled = false; // enable name input
             e.target.parentElement.childNodes[2].style.display = 'none'; // hide edit icon
             e.target.parentElement.childNodes[3].style.display = 'block'; //show check icon
+            btnNewPlayer.disabled = true;
         }
     }
 }); //crud
