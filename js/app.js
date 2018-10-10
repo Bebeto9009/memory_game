@@ -77,15 +77,19 @@ document.addEventListener('click', function(e) {
         e.target.parentElement.remove();
     }
 
-    if (e.target.className.includes('fa-check')) {
-            e.target.parentNode.childNodes[1].disabled=true // disable name input
+    if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[1].value == '')) {
+       return;
+    } else {
+        if (e.target.className.includes('fa-check')) {
+            e.target.parentNode.childNodes[1].disabled = true; // disable name input
             e.target.parentElement.childNodes[2].style.display = 'block'; // show edit icon
             e.target.parentElement.childNodes[3].style.display = 'none'; // hide check icon
-    }
-    if (e.target.className.includes('fa-edit')) {
-            e.target.parentNode.childNodes[1].disabled=false // enable name input
+        }
+
+        if (e.target.className.includes('fa-edit')) {
+            e.target.parentNode.childNodes[1].disabled = false; // enable name input
             e.target.parentElement.childNodes[2].style.display = 'none'; // hide edit icon
             e.target.parentElement.childNodes[3].style.display = 'block'; //show check icon
-
+        }
     }
 }); //crud
