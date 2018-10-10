@@ -85,7 +85,6 @@ document.addEventListener('click', function(e) {
             e.target.parentElement.childNodes[2].style.display = 'block'; // show edit icon
             e.target.parentElement.childNodes[3].style.display = 'none'; // hide check icon
         }
-
         if (e.target.className.includes('fa-edit')) {
             e.target.parentNode.childNodes[1].disabled = false; // enable name input
             e.target.parentElement.childNodes[2].style.display = 'none'; // hide edit icon

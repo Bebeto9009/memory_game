@@ -1,3 +1,7 @@
+* {
+    font-family: 'Roboto Mono', monospace;
+}
+
 body {
     background-image: url(/img/action-figures-art-boy-163036.jpg);
     background-size: cover;
@@ -6,14 +10,14 @@ body {
 
 #game {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     background-color: azure;
     border-radius: 5px;
     max-width: 500px;
     min-height: 500px;
     margin-left: calc(50% - 250px);
+    position: relative;
 }
 
 .game__section{
@@ -21,11 +25,8 @@ body {
 }
 
 .game__header {
-    display: flex;
-    align-self: flex-start;
-    justify-content: center;
-    width: 100%;
     text-transform: uppercase;
+    font-size: 38px;
 }
 
 .btn-add {
@@ -33,6 +34,8 @@ body {
     width: 200px;
     border-radius: 5px;
     background-color: blue;
+    position: absolute;
+    bottom: 20px;
 }
 
 .game__row:first-child {
