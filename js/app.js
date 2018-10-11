@@ -28,7 +28,7 @@ fetch(firstPlayer)
 //**************** fetch ****************//
 
 
-function addNewRow() {
+function addNewRow(item) {
     let playerLi = document.createElement('li');
 
     let playersRow = document.createElement('div');
@@ -113,6 +113,11 @@ document.addEventListener('click', function(e) {
             btnNewPlayer.disabled = false;
             enableEdit();
             enableDelete();
+
+            itemsArray.push(e.target.parentNode.childNodes[0].value);
+            localStorage.setItem('items', JSON.stringify(itemsArray));
+
+
         }
         if (e.target.className.includes('fa-edit')) {
             e.target.parentNode.childNodes[0].disabled = false; // enable name input
@@ -124,3 +129,20 @@ document.addEventListener('click', function(e) {
         }
     }
 }); //crud
+
+let items;
+
+if (localStorage.getItem('items')) {
+    items = JSON.parse(localStorage.getItem('items'));
+} else {
+    items = [];
+}
+
+let itemsArray = [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+data.forEach(item => {
+    addNewRow(item);
+});
