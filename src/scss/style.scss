@@ -12,16 +12,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: azure;
+    background-color: #FBFFF1;
     border-radius: 5px;
     max-width: 500px;
     min-height: 500px;
     margin-left: calc(50% - 250px);
     position: relative;
-}
-
-.game__section{
-    width: 100%;
 }
 
 .game__header {
@@ -33,7 +29,8 @@ body {
     height: 50px;
     width: 200px;
     border-radius: 5px;
-    background-color: blue;
+    background-color: #523A34;
+    color: #fff;
     position: absolute;
     bottom: 20px;
 }
@@ -51,16 +48,12 @@ body {
     margin-left: 25px;
 }
 
-.game-ordinar-numbers {
-    width: 25px;
-    margin-right: 5px;
-    padding: 2px;
-    text-align: center;
-}
-
 .game-name{
     width: 150px;
     padding: 2px;
+    border-radius: 5px;
+    border: 1px solid;
+    background-color: #B4C5E4;
 }
 
 .fas {
@@ -69,4 +62,14 @@ body {
 
 .no-click {
     pointer-events: none;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-list li:nth-child(1) {
+    margin-left: -52px;
 }
