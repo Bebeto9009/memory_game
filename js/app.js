@@ -3,14 +3,9 @@ let obj = [];
 let playerArray = [];
 let list = document.querySelector('.game__section');
 let btnNewPlayer = document.querySelector('.btn-add');
-let noPlayer = document.querySelector('.game-ordinar-numbers');
 let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
 let ol = document.querySelector('ol');
-
-// let elements = document.querySelectorAll('.fa-trash-alt');
-// let elementsNum = elements.length;
-let counter = 2;
 
 //**************** fetch ****************//
 fetch(firstPlayer)
@@ -25,7 +20,6 @@ fetch(firstPlayer)
         obj = data;
         playerArray = obj.map(el => Object.values(el));
 
-        noPlayer.value = playerArray[0][0];
         namePlayer.value = playerArray[0][1];
     })
     .catch(function (error) {
@@ -39,11 +33,6 @@ function addNewRow() {
 
     let playersRow = document.createElement('div');
     playersRow.classList.add('game__row');
-
-    let noNewPlayer = document.createElement('input');
-    noNewPlayer.classList.add('game-ordinar-numbers');
-    noNewPlayer.disabled = true;
-    noNewPlayer.value = counter;
 
     let namePlayer = document.createElement('input');
     namePlayer.classList.add('game-name');
@@ -61,14 +50,11 @@ function addNewRow() {
 
     list.appendChild(ol);
     ol.appendChild(playerLi);
-    // list.appendChild(playerLi);
     playerLi.appendChild(playersRow);
-    playersRow.appendChild(noNewPlayer);
     playersRow.appendChild(namePlayer);
     playersRow.appendChild(editPlayer);
     playersRow.appendChild(acceptNewPlayer);
     playersRow.appendChild(removePlayer);
-    counter++;
 }
 
 function disableEdit(){
@@ -113,26 +99,25 @@ btnNewPlayer.addEventListener('click', function(event) {
 
 document.addEventListener('click', function(e) {
     if (e.target.className.includes('fa-trash-alt')) {
-        // e.target.parentElement.remove();
         e.target.parentElement.parentNode.remove();
-        counter--;
         btnNewPlayer.disabled = false;
     }
-    if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[1].value == '')) {
+    if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[0].value == '')) {
        return;
     } else {
         if (e.target.className.includes('fa-check')) {
-            e.target.parentNode.childNodes[1].disabled = true; // disable name input
-            e.target.parentElement.childNodes[2].style.display = 'block'; // show edit icon
-            e.target.parentElement.childNodes[3].style.display = 'none'; // hide check icon
+            e.target.parentNode.childNodes[0].disabled = true; // disable name input
+            console.log(e.target.parentNode.childNodes)
+            e.target.parentElement.childNodes[1].style.display = 'block'; // show edit icon
+            e.target.parentElement.childNodes[2].style.display = 'none'; // hide check icon
             btnNewPlayer.disabled = false;
             enableEdit();
             enableDelete();
         }
         if (e.target.className.includes('fa-edit')) {
-            e.target.parentNode.childNodes[1].disabled = false; // enable name input
-            e.target.parentElement.childNodes[2].style.display = 'none'; // hide edit icon
-            e.target.parentElement.childNodes[3].style.display = 'block'; //show check icon
+            e.target.parentNode.childNodes[0].disabled = false; // enable name input
+            e.target.parentElement.childNodes[1].style.display = 'none'; // hide edit icon
+            e.target.parentElement.childNodes[2].style.display = 'block'; //show check icon
             btnNewPlayer.disabled = true;
             disableEdit();
             disableDelete();
