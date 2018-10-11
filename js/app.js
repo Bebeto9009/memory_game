@@ -6,6 +6,8 @@ let btnNewPlayer = document.querySelector('.btn-add');
 let noPlayer = document.querySelector('.game-ordinar-numbers');
 let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
+let ol = document.querySelector('ol');
+
 // let elements = document.querySelectorAll('.fa-trash-alt');
 // let elementsNum = elements.length;
 let counter = 2;
@@ -33,9 +35,10 @@ fetch(firstPlayer)
 
 
 function addNewRow() {
+    let playerLi = document.createElement('li');
+
     let playersRow = document.createElement('div');
     playersRow.classList.add('game__row');
-    // playersRow.id = 'row';
 
     let noNewPlayer = document.createElement('input');
     noNewPlayer.classList.add('game-ordinar-numbers');
@@ -49,17 +52,17 @@ function addNewRow() {
     let editPlayer = document.createElement('i');
     editPlayer.classList.add('fas', 'fa-edit');
     editPlayer.style.display = 'none';
-    // editPlayer.id = 'edit';
 
     let removePlayer = document.createElement('i');
     removePlayer.classList.add('fas', 'fa-trash-alt');
-    // removePlayer.id = 'remove';
 
     let acceptNewPlayer = document.createElement('i');
     acceptNewPlayer.classList.add('fas', 'fa-check');
-    // acceptNewPlayer.id = 'accept';
 
-    list.appendChild(playersRow);
+    list.appendChild(ol);
+    ol.appendChild(playerLi);
+    // list.appendChild(playerLi);
+    playerLi.appendChild(playersRow);
     playersRow.appendChild(noNewPlayer);
     playersRow.appendChild(namePlayer);
     playersRow.appendChild(editPlayer);
@@ -76,6 +79,22 @@ function disableEdit(){
     }
 }
 
+function disableDelete(){
+    let trashIcon = document.querySelectorAll('.fa-trash-alt');
+    for (let i = 0; i < trashIcon.length; i++){
+        trashIcon[i].classList.add('no-click');
+        console.log(trashIcon);
+    }
+}
+
+function enableDelete(){
+    let trashIcon = document.querySelectorAll('.fa-trash-alt');
+    for (let i = 0; i < trashIcon.length; i++){
+        trashIcon[i].classList.remove('no-click');
+        console.log(trashIcon);
+    }
+}
+
 function enableEdit(){
     let editIcon = document.querySelectorAll('.fa-edit');
     for (let i = 0; i < editIcon.length; i++){
@@ -89,11 +108,13 @@ btnNewPlayer.addEventListener('click', function(event) {
     addNewRow();
     this.disabled = true;
     disableEdit();
+    disableDelete();
 }); // create row for new player
 
 document.addEventListener('click', function(e) {
     if (e.target.className.includes('fa-trash-alt')) {
-        e.target.parentElement.remove();
+        // e.target.parentElement.remove();
+        e.target.parentElement.parentNode.remove();
         counter--;
         btnNewPlayer.disabled = false;
     }
@@ -105,13 +126,16 @@ document.addEventListener('click', function(e) {
             e.target.parentElement.childNodes[2].style.display = 'block'; // show edit icon
             e.target.parentElement.childNodes[3].style.display = 'none'; // hide check icon
             btnNewPlayer.disabled = false;
-            enableEdit()
+            enableEdit();
+            enableDelete();
         }
         if (e.target.className.includes('fa-edit')) {
             e.target.parentNode.childNodes[1].disabled = false; // enable name input
             e.target.parentElement.childNodes[2].style.display = 'none'; // hide edit icon
             e.target.parentElement.childNodes[3].style.display = 'block'; //show check icon
             btnNewPlayer.disabled = true;
+            disableEdit();
+            disableDelete();
         }
     }
 }); //crud

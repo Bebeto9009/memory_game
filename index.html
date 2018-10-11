@@ -15,13 +15,16 @@
         <p>The game</p>
     </div>
     <div class="game__section">
-        <div class="game__row">
-            <input type="text" class="game-ordinar-numbers" placeholder="ordinar number" disabled/>
-            <input type="text" class="game-name" placeholder="name" required disabled/>
-            <!--<i class="fas fa-edit"></i>-->
-            <!--<i class="fas fa-trash-alt"></i>-->
-            <!--<i class="fas fa-check"></i>-->
-        </div>
+        <ol>
+            <li>
+                <div class="game__row">
+                    <input type="text" class="game-name" placeholder="name" required disabled/>
+                    <!--<i class="fas fa-edit"></i>-->
+                    <!--<i class="fas fa-trash-alt"></i>-->
+                    <!--<i class="fas fa-check"></i>-->
+                </div>
+            </li>
+        </ol>
     </div>
     <button class="btn-add">Add new player</button>
 </form>
@@ -45,9 +48,8 @@ i po odpaleniu strony ma być pierwszy rekord dodany
 1 | Computer
 
 Todo:
-1. numeracja
-2. można dodać max 1 nowy element => dodanie nowego, gdy zatwierdzone są poprzednie
-3. localstorage
+1. numeracja => order list
+2. localstorage
 -->
 
 <script src="js/app.js"></script>
