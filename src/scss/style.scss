@@ -50,10 +50,11 @@ body {
 
 .game-name{
     width: 150px;
-    padding: 2px;
+    padding: 5px;
     border-radius: 5px;
     border: 1px solid;
-    background-color: #B4C5E4;
+    background-color: #816C61;
+    color: #fff;
 }
 
 .fas {
@@ -72,4 +73,8 @@ body {
 
 .order-list li:nth-child(1) {
     margin-left: -52px;
+}
+
+.fa-check {
+    padding-left: 2px;
 }
