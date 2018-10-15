@@ -61,7 +61,6 @@ function disableEdit(){
     let editIcon = document.querySelectorAll('.fa-edit');
     for (let i = 0; i < editIcon.length; i++){
         editIcon[i].classList.add('no-click');
-        console.log(editIcon);
     }
 }
 
@@ -69,7 +68,6 @@ function disableDelete(){
     let trashIcon = document.querySelectorAll('.fa-trash-alt');
     for (let i = 0; i < trashIcon.length; i++){
         trashIcon[i].classList.add('no-click');
-        console.log(trashIcon);
     }
 }
 
@@ -77,7 +75,6 @@ function enableDelete(){
     let trashIcon = document.querySelectorAll('.fa-trash-alt');
     for (let i = 0; i < trashIcon.length; i++){
         trashIcon[i].classList.remove('no-click');
-        console.log(trashIcon);
     }
 }
 
@@ -85,7 +82,6 @@ function enableEdit(){
     let editIcon = document.querySelectorAll('.fa-edit');
     for (let i = 0; i < editIcon.length; i++){
         editIcon[i].classList.remove('no-click');
-        console.log(editIcon);
     }
 }
 
@@ -107,17 +103,15 @@ document.addEventListener('click', function(e) {
     } else {
         if (e.target.className.includes('fa-check')) {
             e.target.parentNode.childNodes[0].disabled = true; // disable name input
-            console.log(e.target.parentNode.childNodes)
             e.target.parentElement.childNodes[1].style.display = 'block'; // show edit icon
             e.target.parentElement.childNodes[2].style.display = 'none'; // hide check icon
             btnNewPlayer.disabled = false;
             enableEdit();
             enableDelete();
+            saveLS();
 
             itemsArray.push(e.target.parentNode.childNodes[0].value);
             localStorage.setItem('items', JSON.stringify(itemsArray));
-
-
         }
         if (e.target.className.includes('fa-edit')) {
             e.target.parentNode.childNodes[0].disabled = false; // enable name input
@@ -146,3 +140,9 @@ const data = JSON.parse(localStorage.getItem('items'));
 data.forEach(item => {
     addNewRow(item);
 });
+
+function saveLS() {
+    let names = document.querySelectorAll('.game-name').value;
+    localStorage.setItem('text', names);
+    console.log(names);
+}
