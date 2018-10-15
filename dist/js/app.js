@@ -6,6 +6,8 @@ let btnNewPlayer = document.querySelector('.btn-add');
 let namePlayer = document.querySelector('.game-name');
 let gameRow = document.querySelector('.game__row');
 let ol = document.querySelector('ol');
+let storedArr = [];
+let namesArr = [];
 
 //**************** fetch ****************//
 fetch(firstPlayer)
@@ -97,6 +99,7 @@ document.addEventListener('click', function(e) {
     if (e.target.className.includes('fa-trash-alt')) {
         e.target.parentElement.parentNode.remove();
         btnNewPlayer.disabled = false;
+        delNames();
     }
     if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[0].value == '')) {
        return;
@@ -108,10 +111,12 @@ document.addEventListener('click', function(e) {
             btnNewPlayer.disabled = false;
             enableEdit();
             enableDelete();
-            saveLS();
-
-            itemsArray.push(e.target.parentNode.childNodes[0].value);
-            localStorage.setItem('items', JSON.stringify(itemsArray));
+            // localStorage.setItem('items', JSON.stringify(namesArr));
+            // storedArr = JSON.parse(localStorage.getItem('items'));
+            // console.log('local storage is', storedArr);
+            // namesArr.push(e.target.parentNode.childNodes[0].value);
+            // console.log('namesArr is', namesArr);
+            addNames();
         }
         if (e.target.className.includes('fa-edit')) {
             e.target.parentNode.childNodes[0].disabled = false; // enable name input
@@ -122,27 +127,27 @@ document.addEventListener('click', function(e) {
             disableDelete();
         }
     }
+    function addNames() {
+        namesArr.push(e.target.parentNode.childNodes[0].value);
+        console.log('namesArr is', namesArr);
+        localStorage.setItem('items', JSON.stringify(namesArr));
+        storedArr = JSON.parse(localStorage.getItem('items'));
+        console.log('local storage is', storedArr);
+    }
+
+    function delNames() {
+        console.log('delnames', storedArr)
+        for (let i = 0; i < storedArr.length; i++) {
+            console.log('e parent', e.target.parentNode.childNodes[0].value)
+            // if (storedArr[i] === e.target.parentNode.childNodes[0].value) {
+            if (storedArr[i].includes(e.target.parentNode.childNodes[0].value)) {
+                storedArr.splice(i, 1)
+            }
+            // e.target.parentNode.childNodes[i].remove();
+            localStorage.setItem('items', JSON.stringify(namesArr));
+            console.log('losadasd', localStorage);
+            // storedArr[i].remove();
+        }
+    }
 }); //crud
 
-let items;
-
-if (localStorage.getItem('items')) {
-    items = JSON.parse(localStorage.getItem('items'));
-} else {
-    items = [];
-}
-
-let itemsArray = [];
-
-localStorage.setItem('items', JSON.stringify(itemsArray));
-const data = JSON.parse(localStorage.getItem('items'));
-
-data.forEach(item => {
-    addNewRow(item);
-});
-
-function saveLS() {
-    let names = document.querySelectorAll('.game-name').value;
-    localStorage.setItem('text', names);
-    console.log(names);
-}
