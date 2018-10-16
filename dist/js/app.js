@@ -111,11 +111,6 @@ document.addEventListener('click', function(e) {
             btnNewPlayer.disabled = false;
             enableEdit();
             enableDelete();
-            // localStorage.setItem('items', JSON.stringify(namesArr));
-            // storedArr = JSON.parse(localStorage.getItem('items'));
-            // console.log('local storage is', storedArr);
-            // namesArr.push(e.target.parentNode.childNodes[0].value);
-            // console.log('namesArr is', namesArr);
             addNames();
         }
         if (e.target.className.includes('fa-edit')) {
@@ -127,35 +122,39 @@ document.addEventListener('click', function(e) {
             disableDelete();
         }
     }
+    // function addNames() {
+    //     namesArr.push(e.target.parentNode.childNodes[0].value);
+    //     console.log('namesArr is', namesArr);
+    //     localStorage.setItem('items', JSON.stringify(namesArr));
+    //     storedArr = JSON.parse(localStorage.getItem('items'));
+    // }
+
     function addNames() {
-        namesArr.push(e.target.parentNode.childNodes[0].value);
-        console.log('namesArr is', namesArr);
-        localStorage.setItem('items', JSON.stringify(namesArr));
-        storedArr = JSON.parse(localStorage.getItem('items'));
-        console.log('local storage is', storedArr);
+        let newName = e.target.parentNode.childNodes[0].value;
+        namesArr.push(newName);
+        console.log(namesArr)
+        for (let i = 0; i < namesArr.length; i++) {
+            if (namesArr[i].includes(newName)) {
+                console.log('zawiera')
+            } else {
+                namesArr.push(e.target.parentNode.childNodes[0].value);
+                console.log('namesArr is', namesArr);
+                localStorage.setItem('items', JSON.stringify(namesArr));
+                storedArr = JSON.parse(localStorage.getItem('items'));
+            }
+        }
     }
 
+
     function delNames() {
-        // console.log('delnames', storedArr)
-        // console.log('parent node', e.target.parentNode.childNodes[0].value)
         for (let i = 0; i < storedArr.length; i++) {
-            console.log('e parent', e.target.parentNode.childNodes[0].value)
-            // if (storedArr[i] === e.target.parentNode.childNodes[0].value) {
-            console.log('stored', storedArr[i])
             if ((storedArr[i] === e.target.parentNode.childNodes[0].value) && (namesArr[i] === e.target.parentNode.childNodes[0].value)) {
                 storedArr.splice(i, 1);
                 namesArr.splice(i, 1);
                 localStorage.setItem('items', JSON.stringify(storedArr))
-                // namesArr = [];
-                // storedArr.push(namesArr);
-                // zaktualizować localstorage
-                console.log('storedarr w petli', storedArr)
             }
-            // e.target.parentNode.childNodes[i].remove();
-            // localStorage.setItem('items', JSON.stringify(namesArr));
-            // console.log('losadasd', localStorage);
-            // storedArr[i].remove();
         }
     }
+
 }); //crud
 
