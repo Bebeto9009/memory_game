@@ -136,16 +136,24 @@ document.addEventListener('click', function(e) {
     }
 
     function delNames() {
-        console.log('delnames', storedArr)
+        // console.log('delnames', storedArr)
+        // console.log('parent node', e.target.parentNode.childNodes[0].value)
         for (let i = 0; i < storedArr.length; i++) {
             console.log('e parent', e.target.parentNode.childNodes[0].value)
             // if (storedArr[i] === e.target.parentNode.childNodes[0].value) {
-            if (storedArr[i].includes(e.target.parentNode.childNodes[0].value)) {
-                storedArr.splice(i, 1)
+            console.log('stored', storedArr[i])
+            if ((storedArr[i] === e.target.parentNode.childNodes[0].value) && (namesArr[i] === e.target.parentNode.childNodes[0].value)) {
+                storedArr.splice(i, 1);
+                namesArr.splice(i, 1);
+                localStorage.setItem('items', JSON.stringify(storedArr))
+                // namesArr = [];
+                // storedArr.push(namesArr);
+                // zaktualizować localstorage
+                console.log('storedarr w petli', storedArr)
             }
             // e.target.parentNode.childNodes[i].remove();
-            localStorage.setItem('items', JSON.stringify(namesArr));
-            console.log('losadasd', localStorage);
+            // localStorage.setItem('items', JSON.stringify(namesArr));
+            // console.log('losadasd', localStorage);
             // storedArr[i].remove();
         }
     }
