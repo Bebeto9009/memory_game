@@ -30,7 +30,7 @@ fetch(firstPlayer)
 //**************** fetch ****************//
 
 
-function addNewRow(item) {
+function addNewRow() {
     let playerLi = document.createElement('li');
 
     let playersRow = document.createElement('div');
@@ -157,13 +157,11 @@ document.addEventListener('click', function(e) {
 }); //crud
 
 let items = JSON.parse(localStorage.getItem('items')) || [];
+items.forEach(addNewRow);
+let allPlayers = document.querySelectorAll('.game-name');
 
-(function rowsLS(){
+for (let i = 0; i < allPlayers.length; i++) {
     for (let i = 0; i < items.length; i++) {
-        addNewRow(items[i]);
-        let allPlayers = document.querySelectorAll('.game-name');
-        for (j = 0; j < allPlayers.length; j++){
-           console.log(allPlayers[j].value=items[i]);
-        }
+        allPlayers[i].value = items[i];
     }
-})();
+}
