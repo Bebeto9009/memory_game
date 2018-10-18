@@ -122,29 +122,28 @@ document.addEventListener('click', function(e) {
             disableDelete();
         }
     }
-    // function addNames() {
-    //     namesArr.push(e.target.parentNode.childNodes[0].value);
-    //     console.log('namesArr is', namesArr);
-    //     localStorage.setItem('items', JSON.stringify(namesArr));
-    //     storedArr = JSON.parse(localStorage.getItem('items'));
-    // }
-
     function addNames() {
-        let newName = e.target.parentNode.childNodes[0].value;
-        namesArr.push(newName);
-        console.log(namesArr)
-        for (let i = 0; i < namesArr.length; i++) {
-            if (namesArr[i].includes(newName)) {
-                console.log('zawiera')
-            } else {
-                namesArr.push(e.target.parentNode.childNodes[0].value);
-                console.log('namesArr is', namesArr);
-                localStorage.setItem('items', JSON.stringify(namesArr));
-                storedArr = JSON.parse(localStorage.getItem('items'));
-            }
-        }
+        namesArr.push(e.target.parentNode.childNodes[0].value);
+        console.log('namesArr is', namesArr);
+        localStorage.setItem('items', JSON.stringify(namesArr));
+        storedArr = JSON.parse(localStorage.getItem('items'));
     }
 
+    // function addNames() {
+    //     let newName = e.target.parentNode.childNodes[0].value;
+    //     namesArr.push(newName);
+    //     console.log(namesArr);
+    //     for (let i = 0; i < namesArr.length; i++) {
+    //         if (namesArr[i].includes(newName)) {
+    //             console.log('zawiera')
+    //         } else {
+    //             namesArr.push(e.target.parentNode.childNodes[0].value);
+    //             console.log('namesArr is', namesArr);
+    //             localStorage.setItem('items', JSON.stringify(namesArr));
+    //             storedArr = JSON.parse(localStorage.getItem('items'));
+    //         }
+    //     }
+    // }
 
     function delNames() {
         for (let i = 0; i < storedArr.length; i++) {
@@ -155,6 +154,16 @@ document.addEventListener('click', function(e) {
             }
         }
     }
-
 }); //crud
 
+let items = JSON.parse(localStorage.getItem('items')) || [];
+
+(function rowsLS(){
+    for (let i = 0; i < items.length; i++) {
+        addNewRow(items[i]);
+        let allPlayers = document.querySelectorAll('.game-name');
+        for (j = 0; j < allPlayers.length; j++){
+           console.log(allPlayers[j].value=items[i]);
+        }
+    }
+})();
