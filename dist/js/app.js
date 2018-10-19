@@ -158,7 +158,8 @@ document.addEventListener('click', function(e) {
 
 let items = JSON.parse(localStorage.getItem('items')) || [];
 items.forEach(addNewRow);
-let allPlayers = document.querySelectorAll('.game-name');
+let allPlayers = Array.from(document.querySelectorAll('.game-name'));
+allPlayers.shift();
 
 for (let i = 0; i < allPlayers.length; i++) {
     for (let i = 0; i < items.length; i++) {
