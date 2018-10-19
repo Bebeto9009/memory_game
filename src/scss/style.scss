@@ -35,6 +35,10 @@ body {
     bottom: 20px;
 }
 
+.btn-add:disabled {
+    background-color: #bcbab8;
+}
+
 .game__row:first-child {
     margin-left: 0px;
 }
@@ -55,6 +59,10 @@ body {
     border: 1px solid;
     background-color: #816C61;
     color: #fff;
+}
+
+.game-name:disabled {
+    background-color: #bcbab8;
 }
 
 .fas {
