@@ -31,32 +31,32 @@ fetch(firstPlayer)
 
 
 function addNewRow() {
-    let playerLi = document.createElement('li');
+        let playerLi = document.createElement('li');
 
-    let playersRow = document.createElement('div');
-    playersRow.classList.add('game__row');
+        let playersRow = document.createElement('div');
+        playersRow.classList.add('game__row');
 
-    let namePlayer = document.createElement('input');
-    namePlayer.classList.add('game-name');
-    namePlayer.required = true;
+        let namePlayer = document.createElement('input');
+        namePlayer.classList.add('game-name');
+        namePlayer.required = true;
 
-    let editPlayer = document.createElement('i');
-    editPlayer.classList.add('fas', 'fa-edit');
-    editPlayer.style.display = 'none';
+        let editPlayer = document.createElement('i');
+        editPlayer.classList.add('fas', 'fa-edit');
+        editPlayer.style.display = 'none';
 
-    let removePlayer = document.createElement('i');
-    removePlayer.classList.add('fas', 'fa-trash-alt');
+        let removePlayer = document.createElement('i');
+        removePlayer.classList.add('fas', 'fa-trash-alt');
 
-    let acceptNewPlayer = document.createElement('i');
-    acceptNewPlayer.classList.add('fas', 'fa-check');
+        let acceptNewPlayer = document.createElement('i');
+        acceptNewPlayer.classList.add('fas', 'fa-check');
 
-    list.appendChild(ol);
-    ol.appendChild(playerLi);
-    playerLi.appendChild(playersRow);
-    playersRow.appendChild(namePlayer);
-    playersRow.appendChild(editPlayer);
-    playersRow.appendChild(acceptNewPlayer);
-    playersRow.appendChild(removePlayer);
+        list.appendChild(ol);
+        ol.appendChild(playerLi);
+        playerLi.appendChild(playersRow);
+        playersRow.appendChild(namePlayer);
+        playersRow.appendChild(editPlayer);
+        playersRow.appendChild(acceptNewPlayer);
+        playersRow.appendChild(removePlayer);
 }
 
 function disableEdit(){
@@ -129,22 +129,6 @@ document.addEventListener('click', function(e) {
         storedArr = JSON.parse(localStorage.getItem('items'));
     }
 
-    // function addNames() {
-    //     let newName = e.target.parentNode.childNodes[0].value;
-    //     namesArr.push(newName);
-    //     console.log(namesArr);
-    //     for (let i = 0; i < namesArr.length; i++) {
-    //         if (namesArr[i].includes(newName)) {
-    //             console.log('zawiera')
-    //         } else {
-    //             namesArr.push(e.target.parentNode.childNodes[0].value);
-    //             console.log('namesArr is', namesArr);
-    //             localStorage.setItem('items', JSON.stringify(namesArr));
-    //             storedArr = JSON.parse(localStorage.getItem('items'));
-    //         }
-    //     }
-    // }
-
     function delNames() {
         for (let i = 0; i < storedArr.length; i++) {
             if ((storedArr[i] === e.target.parentNode.childNodes[0].value) && (namesArr[i] === e.target.parentNode.childNodes[0].value)) {
@@ -157,6 +141,8 @@ document.addEventListener('click', function(e) {
 }); //crud
 
 let items = JSON.parse(localStorage.getItem('items')) || [];
+namesArr=items;
+storedArr = items;
 items.forEach(addNewRow);
 let allPlayers = Array.from(document.querySelectorAll('.game-name'));
 allPlayers.shift();
@@ -164,5 +150,8 @@ allPlayers.shift();
 for (let i = 0; i < allPlayers.length; i++) {
     for (let i = 0; i < items.length; i++) {
         allPlayers[i].value = items[i];
+        allPlayers[i].disabled=true;
+        allPlayers[i].parentElement.childNodes[1].style.display = 'block';
+        allPlayers[i].parentElement.childNodes[2].style.display = 'none';
     }
 }
