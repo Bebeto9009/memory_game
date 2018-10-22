@@ -123,9 +123,7 @@ document.addEventListener('click', function(e) {
             disableEdit();
             disableDelete();
             countPlayer();
-            // console.log(e.target.parentNode.childNodes)
-            // namesArr.splice(e.target.parentNode.childNodes[0].value, namesArr, localStorage);
-            // editPlayer()
+            console.log(e.target.parentNode.childNodes)
         }
     }
 
@@ -171,13 +169,3 @@ function countPlayer() {
         btnNewPlayer.disabled = true;
     }
 }
-
-// function editPlayer(items, moveFrom, moveTo) {
-//     const movingItem = items[moveFrom];
-//     items.splice(moveFrom, 1);
-//     items.splice(moveTo, 0, movingItem)
-//
-//     return items;
-// }
-//
-// const arrangedArray = editPlayer(items, 2, 0);
