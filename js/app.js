@@ -123,8 +123,12 @@ document.addEventListener('click', function(e) {
             disableEdit();
             disableDelete();
             countPlayer();
+            // console.log(e.target.parentNode.childNodes)
+            // namesArr.splice(e.target.parentNode.childNodes[0].value, namesArr, localStorage);
+            // editPlayer()
         }
     }
+
     function addNames() {
         namesArr.push(e.target.parentNode.childNodes[0].value);
         console.log('namesArr is', namesArr);
@@ -144,7 +148,7 @@ document.addEventListener('click', function(e) {
 }); //crud
 
 let items = JSON.parse(localStorage.getItem('items')) || [];
-namesArr=items;
+namesArr = items;
 storedArr = items;
 items.forEach(addNewRow);
 let allPlayers = Array.from(document.querySelectorAll('.game-name'));
@@ -153,7 +157,7 @@ countPlayer();
 for (let i = 0; i < allPlayers.length; i++) {
     for (let i = 0; i < items.length; i++) {
         allPlayers[i].value = items[i];
-        allPlayers[i].disabled=true;
+        allPlayers[i].disabled = true;
         allPlayers[i].parentElement.childNodes[1].style.display = 'block';
         allPlayers[i].parentElement.childNodes[2].style.display = 'none';
     }
@@ -161,9 +165,19 @@ for (let i = 0; i < allPlayers.length; i++) {
 
 function countPlayer() {
     if (namesArr.length < 3) {
-        btnNewPlayer.disabled=false;
+        btnNewPlayer.disabled = false;
         console.log(allPlayers)
     } else {
-        btnNewPlayer.disabled=true;
+        btnNewPlayer.disabled = true;
     }
 }
+
+// function editPlayer(items, moveFrom, moveTo) {
+//     const movingItem = items[moveFrom];
+//     items.splice(moveFrom, 1);
+//     items.splice(moveTo, 0, movingItem)
+//
+//     return items;
+// }
+//
+// const arrangedArray = editPlayer(items, 2, 0);
