@@ -125,7 +125,7 @@ document.addEventListener('click', function(e) {
         delNames();
         countPlayer();
     }
-    if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[0].value == '')) {
+    if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[0].value === '')) {
        return;
     } else {
         if (e.target.className.includes('fa-check')) {
@@ -146,23 +146,20 @@ document.addEventListener('click', function(e) {
             disableEdit();
             disableDelete();
             countPlayer();
-            console.log(e.target.parentNode.childNodes)
         }
     }
 
     function addNames() {
         namesArr.push(e.target.parentNode.childNodes[0].value);
-        console.log('namesArr is', namesArr);
         localStorage.setItem('items', JSON.stringify(namesArr));
         storedArr = JSON.parse(localStorage.getItem('items'));
     }
 
     function delNames() {
-        console.log('cos')
         for (let i = 0; i < storedArr.length; i++) {
             if ((storedArr[i] === e.target.parentNode.childNodes[0].value) && (namesArr[i] === e.target.parentNode.childNodes[0].value)) {
                 storedArr.splice(i, 1);
-                namesArr.splice(i, 1);
+                namesArr = storedArr;
                 localStorage.setItem('items', JSON.stringify(storedArr))
             }
         }
