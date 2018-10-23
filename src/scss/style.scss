@@ -40,11 +40,11 @@ body {
     background-color: #bcbab8;
 }
 
-.game__row:first-child {
+.user:first-child {
     margin-left: 0px;
 }
 
-.game__row {
+.user {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +53,7 @@ body {
     margin-left: 25px;
 }
 
-.game-name{
+.user__name{
     width: 150px;
     padding: 5px;
     border-radius: 5px;
@@ -62,7 +62,7 @@ body {
     color: #fff;
 }
 
-.game-name:disabled {
+.user__name:disabled {
     background-color: #bcbab8;
 }
 
@@ -74,13 +74,13 @@ body {
     pointer-events: none;
 }
 
-.order-list {
+.game__section-list {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.order-list li:nth-child(1) {
+.game__section-list li:nth-child(1) {
     margin-left: -52px;
 }
 
