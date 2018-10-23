@@ -3,11 +3,26 @@ let obj = [];
 let playerArray = [];
 let list = document.querySelector('.game__section');
 let btnNewPlayer = document.querySelector('.btn-add');
-let namePlayer = document.querySelector('.game-name');
-let gameRow = document.querySelector('.game__row');
+let namePlayer = document.querySelector('.user__name');
+let gameRow = document.querySelector('.user');
 let ol = document.querySelector('ol');
 let storedArr = [];
 let namesArr = [];
+let items = JSON.parse(localStorage.getItem('items')) || [];
+namesArr = items;
+storedArr = items;
+items.forEach(addNewRow);
+let allPlayers = Array.from(document.querySelectorAll('.user__name'));
+allPlayers.shift();
+countPlayer();
+
+for (let i = 0; i < allPlayers.length; i++) {
+    allPlayers[i].value = items[i];
+    allPlayers[i].disabled = true;
+    allPlayers[i].parentElement.childNodes[1].style.display = 'block';
+    allPlayers[i].parentElement.childNodes[2].style.display = 'none';
+} // edit icon on default for element from LS
+
 
 //**************** fetch ****************//
 fetch(firstPlayer)
@@ -29,15 +44,14 @@ fetch(firstPlayer)
     });
 //**************** fetch ****************//
 
-
 function addNewRow() {
         let playerLi = document.createElement('li');
 
         let playersRow = document.createElement('div');
-        playersRow.classList.add('game__row');
+        playersRow.classList.add('user');
 
         let namePlayer = document.createElement('input');
-        namePlayer.classList.add('game-name');
+        namePlayer.classList.add('user__name');
         namePlayer.required = true;
 
         let editPlayer = document.createElement('i');
@@ -84,6 +98,15 @@ function enableEdit(){
     let editIcon = document.querySelectorAll('.fa-edit');
     for (let i = 0; i < editIcon.length; i++){
         editIcon[i].classList.remove('no-click');
+    }
+}
+
+function countPlayer() {
+    if (namesArr.length < 3) {
+        btnNewPlayer.disabled = false;
+        console.log(allPlayers)
+    } else {
+        btnNewPlayer.disabled = true;
     }
 }
 
@@ -135,6 +158,7 @@ document.addEventListener('click', function(e) {
     }
 
     function delNames() {
+        console.log('cos')
         for (let i = 0; i < storedArr.length; i++) {
             if ((storedArr[i] === e.target.parentNode.childNodes[0].value) && (namesArr[i] === e.target.parentNode.childNodes[0].value)) {
                 storedArr.splice(i, 1);
@@ -145,27 +169,5 @@ document.addEventListener('click', function(e) {
     }
 }); //crud
 
-let items = JSON.parse(localStorage.getItem('items')) || [];
-namesArr = items;
-storedArr = items;
-items.forEach(addNewRow);
-let allPlayers = Array.from(document.querySelectorAll('.game-name'));
-allPlayers.shift();
-countPlayer();
-for (let i = 0; i < allPlayers.length; i++) {
-    for (let i = 0; i < items.length; i++) {
-        allPlayers[i].value = items[i];
-        allPlayers[i].disabled = true;
-        allPlayers[i].parentElement.childNodes[1].style.display = 'block';
-        allPlayers[i].parentElement.childNodes[2].style.display = 'none';
-    }
-}
 
-function countPlayer() {
-    if (namesArr.length < 3) {
-        btnNewPlayer.disabled = false;
-        console.log(allPlayers)
-    } else {
-        btnNewPlayer.disabled = true;
-    }
-}
+
