@@ -42,7 +42,6 @@ body {
 .btn-play {
     background-color: #FF0000;
     bottom: 40px;
-    margin-left: -100px;
 }
 
 .btn-add:disabled {
@@ -101,4 +100,18 @@ body {
     #game {
         margin: 20px;
     }
+}
+
+#mario_game {
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 280px);
+}
+
+.the_mario_game {
+    display: none;
+}
+
+.the_mario_game.is-display {
+    display: block;
 }

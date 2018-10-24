@@ -9,6 +9,8 @@ let ol = document.querySelector('ol');
 let storedArr = [];
 let namesArr = [];
 let items = JSON.parse(localStorage.getItem('items')) || [];
+let game_mario = document.getElementsByClassName('the_mario_game');
+let btnPlay = document.querySelector('.btn-play');
 namesArr = items;
 storedArr = items;
 items.forEach(addNewRow);
@@ -114,7 +116,6 @@ btnNewPlayer.addEventListener('click', function(event) {
     addNewRow();
     this.disabled = true;
     disableEdit();
-    // disableDelete();
 }); // create row for new player
 
 document.addEventListener('click', function(e) {
@@ -169,6 +170,17 @@ document.addEventListener('click', function(e) {
         }
     }
 }); //crud
+
+btnPlay.addEventListener('click', function () {
+    console.log(game_mario[0].classList)
+    game_mario[0].classList.toggle('is-display');
+    let playerList = document.getElementById('game');
+    playerList.style.display = 'none';
+});
+
+
+
+
 
 
 
