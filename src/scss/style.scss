@@ -26,14 +26,23 @@ body {
     font-size: 38px;
 }
 
-.btn-add {
+.btn {
     height: 50px;
     width: 200px;
     border-radius: 5px;
-    background-color: #523A34;
     color: #fff;
     position: absolute;
-    bottom: 20px;
+}
+
+.btn-add {
+    background-color: #523A34;
+    bottom: 110px;
+}
+
+.btn-play {
+    background-color: #FF0000;
+    bottom: 40px;
+    margin-left: -100px;
 }
 
 .btn-add:disabled {
@@ -86,4 +95,10 @@ body {
 
 .fa-check {
     padding-left: 2px;
+}
+
+@media only screen and (max-width: 600px) {
+    #game {
+        margin: 20px;
+    }
 }
