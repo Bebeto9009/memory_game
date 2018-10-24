@@ -104,7 +104,6 @@ function enableEdit(){
 function countPlayer() {
     if (namesArr.length < 3) {
         btnNewPlayer.disabled = false;
-        console.log(allPlayers)
     } else {
         btnNewPlayer.disabled = true;
     }
@@ -115,7 +114,7 @@ btnNewPlayer.addEventListener('click', function(event) {
     addNewRow();
     this.disabled = true;
     disableEdit();
-    disableDelete();
+    // disableDelete();
 }); // create row for new player
 
 document.addEventListener('click', function(e) {
