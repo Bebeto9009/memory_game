@@ -150,7 +150,12 @@ document.addEventListener('click', function(e) {
     }
 
     function addNames() {
-        namesArr.push(e.target.parentNode.childNodes[0].value);
+        namesArr = [];
+        let namePlayer = document.querySelectorAll('.user__name');
+        console.log(namePlayer);
+        for (let i = 1; i < namePlayer.length; i++){
+            namesArr.push(namePlayer[i].value);
+        }
         localStorage.setItem('items', JSON.stringify(namesArr));
         storedArr = JSON.parse(localStorage.getItem('items'));
     }
