@@ -2,10 +2,16 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-body {
+body, html {
+    margin: 0;
+    padding: 0;
     background-image: url(../img/mario-luigi-figures-funny-163114.jpeg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 #game {
@@ -42,6 +48,10 @@ body {
 .btn-play {
     background-color: #FF0000;
     bottom: 40px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-add:disabled {
@@ -114,4 +124,31 @@ body {
 
 .the_mario_game.is-display {
     display: block;
+}
+
+//********************************memory game***********************************
+.memory_game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.memory_game--list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 300px;
+}
+
+.memory_game--item {
+    margin: 20px;
+
+}
+
+.reverse {
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    border: #ffffff 3px solid;
 }
