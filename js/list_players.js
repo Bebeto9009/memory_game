@@ -171,12 +171,6 @@ document.addEventListener('click', function(e) {
     }
 }); //crud
 
-btnPlay.addEventListener('click', function () {
-    console.log(game_mario[0].classList)
-    game_mario[0].classList.toggle('is-display');
-    let playerList = document.getElementById('game');
-    playerList.style.display = 'none';
-});
 
 
 
