@@ -10,17 +10,14 @@ const memory = {
     ],
 
     startGame : function() {
-        randomArr = [];
-
-        for (let i = 0; i = this.img.length; i++) {
-            console.log('coś')
+        // randomArr = [];
+        // for (let i = 0; i < this.img.length; i++) {
+            this.randomCards.push(this.img[Math.floor(Math.random()*this.img.length)]);
+            // console.log(return _.sample(this.img.length, 2);
+            console.log(randomCards)
+            // return;
         }
-    }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.btn-add').addEventListener('click', function () {
-        memory.startGame();
-    });
-});
 
+memory.startGame();
