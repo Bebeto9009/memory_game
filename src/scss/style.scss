@@ -92,13 +92,13 @@ body, html {
     pointer-events: none;
 }
 
-.game__section-list {
+.game__section--list {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.game__section-list li:nth-child(1) {
+.game__section--list li:nth-child(1) {
     margin-left: -52px;
 }
 
@@ -127,23 +127,32 @@ body, html {
 }
 
 //********************************memory game***********************************
-.memory_game {
+.memory__game {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.memory_game--list {
+.memory__game--list {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     width: 300px;
 }
 
-.memory_game--item {
+.memory__game--item {
     margin: 20px;
+    width: 100px;
+    height: 150px;
 
+}
+
+.obverse {
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    border: #ffffff 3px solid;
 }
 
 .reverse {
