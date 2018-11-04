@@ -1,7 +1,7 @@
 const memory = {
     randomCards: [],
     checkedCards: [],
-    clicable: true,
+    click: 0,
     img: [{
         'name' : 'koopa_troopa',
         'img' : '/img/koopa_troopa.jpg',
@@ -43,35 +43,34 @@ const memory = {
 
             card.addEventListener('click', this.selectCard.bind(this));
         })
-    }, //end startGame method
+    }, // end startGame method
 
     selectCard : function(e) {
-        if (this.clicable) {
+        if (this.click < 2) {
+            this.click++;
             this.checkedCards.push(e.target);
-            console.log(this.checkedCards[0].dataset.name);
+            // console.log(this.checkedCards[0].dataset.name);
             e.target.classList.remove('reverse');
             e.target.classList.add('select');
+            if (this.click > 1){
+                this.matchCard();
+            }
+
         }
-    },
+    }, // end selectCard method
 
-    resetSelect : function() {
-        if (this.checkedCards)
-        if (this.checkedCard.length < 2) {
-
+    matchCard : function() {
+        // console.log(this.checkedCards)
+        // if (this.checkedCards[0].dataset.name === this.checkedCards[1].dataset.name){
+        if (this.checkedCards[0].dataset.name === this.checkedCards[1].dataset.name){
+           console.log(`it's match`);
+           // this.click = 0;
         } else {
-            return;
+            console.log(`it doesn't match`);
+            // this.click = 0;
         }
     }
 
 } // end object memory
-
-// let memoryList = document.querySelector('.memory__game--list');
-// memoryList.addEventListener('click', function(e) {
-//     let clicked = e.target;
-//
-//     // if(clicked.nodeName === '')
-//
-//     clicked.classList.add('select');
-// })
 
 memory.startGame();
