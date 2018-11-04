@@ -1,6 +1,7 @@
 const memory = {
     randomCards: [],
     checkedCards: [],
+    clicable: true,
     img: [{
         'name' : 'koopa_troopa',
         'img' : '/img/koopa_troopa.jpg',
@@ -34,13 +35,43 @@ const memory = {
             const memoryList = document.querySelector('.memory__game--list');
             const card = document.createElement('img');
 
-            card.classList.add('memory__game--item', 'obverse');
+            card.classList.add('memory__game--item', 'reverse');
             card.dataset.name = item.name;
             card.src = item.img;
 
             memoryList.appendChild(card);
+
+            card.addEventListener('click', this.selectCard.bind(this));
         })
-    } //end startGame method
+    }, //end startGame method
+
+    selectCard : function(e) {
+        if (this.clicable) {
+            this.checkedCards.push(e.target);
+            console.log(this.checkedCards[0].dataset.name);
+            e.target.classList.remove('reverse');
+            e.target.classList.add('select');
+        }
+    },
+
+    resetSelect : function() {
+        if (this.checkedCards)
+        if (this.checkedCard.length < 2) {
+
+        } else {
+            return;
+        }
+    }
+
 } // end object memory
+
+// let memoryList = document.querySelector('.memory__game--list');
+// memoryList.addEventListener('click', function(e) {
+//     let clicked = e.target;
+//
+//     // if(clicked.nodeName === '')
+//
+//     clicked.classList.add('select');
+// })
 
 memory.startGame();

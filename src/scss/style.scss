@@ -138,14 +138,14 @@ body, html {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    width: 300px;
+    width: 320px;
 }
 
 .memory__game--item {
     margin: 20px;
     width: 100px;
     height: 150px;
-
+    box-sizing: border-box;
 }
 
 .obverse {
@@ -160,4 +160,9 @@ body, html {
     height: 150px;
     border-radius: 5px;
     border: #ffffff 3px solid;
+    content:url('/img/reverse.jpg')
+}
+
+.select {
+    border: 5px solid #FF0000;
 }
