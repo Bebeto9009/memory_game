@@ -47,30 +47,29 @@ const memory = {
 
     selectCard : function(e) {
         if (this.click < 2) {
-            this.click++;
-            this.checkedCards.push(e.target);
-            // console.log(this.checkedCards[0].dataset.name);
-            e.target.classList.remove('reverse');
-            e.target.classList.add('select');
-            if (this.click > 1){
-                this.matchCard();
-            }
+            if (e.target === this.checkedCards[0]) {
+                return;
+            } else {
+                this.click++;
+                this.checkedCards.push(e.target);
+                e.target.classList.remove('reverse');
+                e.target.classList.add('select');
+                e.target.classList.add('disabled');
 
+                if (this.click > 1) {
+                    this.matchCard();
+                }
+            }
         }
     }, // end selectCard method
 
     matchCard : function() {
-        // console.log(this.checkedCards)
-        // if (this.checkedCards[0].dataset.name === this.checkedCards[1].dataset.name){
         if (this.checkedCards[0].dataset.name === this.checkedCards[1].dataset.name){
-           console.log(`it's match`);
-           // this.click = 0;
+            console.log(`it's match`);
         } else {
             console.log(`it doesn't match`);
-            // this.click = 0;
         }
     }
-
 } // end object memory
 
 memory.startGame();
