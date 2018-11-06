@@ -4,23 +4,23 @@ const memory = {
     click: 0,
     img: [{
         'name' : 'koopa_troopa',
-        'img' : '/img/koopa_troopa.jpg',
+        'img' : '../img/koopa_troopa.jpg',
     },
     {
         'name' : 'luigi',
-        'img' : '/img/luigi.jpg',
+        'img' : '../img/luigi.jpg',
     },
     {
         'name' : 'mario',
-        'img' : '/img/mario.jpg',
+        'img' : '../img/mario.jpg',
     },
     {
         'name' : 'mushroom',
-        'img' : '/img/mushroom.jpg',
+        'img' : '../img/mushroom.jpg',
     },
     {
         'name' : 'yoshi',
-        'img' : '/img/yoshi.jpg',
+        'img' : '../img/yoshi.jpg',
     }
     ],
 
