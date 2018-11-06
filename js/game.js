@@ -29,7 +29,7 @@ const memory = {
         let selected = shuffled.slice(0,2) ; //get 2 first elements from shuffle
         this.randomCards.push(selected);
         let allCard = this.randomCards[0].concat(this.randomCards[0]);
-        allCard.sort(() => 0.5 - Math.random());
+        allCard.sort(() => .5 - Math.random());
 
         allCard.forEach((item) => {
             const memoryList = document.querySelector('.memory__game--list');
