@@ -52,7 +52,9 @@ const memory = {
             } else {
                 this.click++;
                 this.checkedCards.push(e.target);
-                e.target.classList.remove('reverse');
+                setTimeout(function() {
+                    e.target.classList.remove('reverse');
+                }, 250);
                 e.target.classList.add('select');
                 e.target.classList.add('disabled');
 
