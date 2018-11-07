@@ -146,13 +146,8 @@ body, html {
     width: 100px;
     height: 150px;
     box-sizing: border-box;
-}
-
-.obverse {
-    width: 100px;
-    height: 150px;
-    border-radius: 5px;
-    border: #ffffff 3px solid;
+    transition: all .4s linear;
+    transform-style: preserve-3d;
 }
 
 .reverse {
@@ -160,10 +155,11 @@ body, html {
     height: 150px;
     border-radius: 5px;
     border: #ffffff 3px solid;
-    content:url('../img/reverse.jpg')
+    content:url('../img/reverse.jpg');
 }
 
 .select {
     border-radius: 5px;
     border: 5px solid #FF0000;
+    transform: rotateY( 180deg );
 }
