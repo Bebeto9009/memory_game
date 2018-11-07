@@ -41,7 +41,7 @@ const memory = {
 
             memoryList.appendChild(card);
 
-            card.addEventListener('click', this.selectCard.bind(this));
+            card.addEventListener('click', this.selectCard.bind(this), false);
         })
     }, // end startGame method
 
