@@ -31,6 +31,12 @@
     <button class="btn btn-play">START</button>
 </form>
 
+<div class="score_table">
+    <span class="player player1">Player 1</span>
+    <span class="player player2">Player 2</span>
+    <button class="btn btn-back">BACK</button>
+</div>
+
 <div id="memory__game" class="memory__game">
     <div class="memory__game--list">
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
@@ -39,6 +45,15 @@
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
     </div>
 </div>
+<!-- to do:
+1. Obsłużyć tury - najpierw jeden, potem drugi
+a. dwóch graczy + zaznaczenie którego tura
+2. Jak jeden wybierze maczujące karty, ma ponowny ruch
+3. Niech się zlicza ile kto okrył poprawnych par kart
+a. licznik dla każdego z graczy
++4. Niech dobrze dobrane pary znikają z pola gry (ma zostać np pusta przestrzeń - opacity i do przodu  )
+5. Jak wypsztykają całą talię niech się pokaże kto jest zwycięzcą
+-->
 
 <script src="js/list_players.js"></script>
 <script src="js/game.js"></script>

@@ -129,10 +129,10 @@ body, html {
 
 //********************************memory game***********************************
 .memory__game {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    //height: 100vh;
+    height: 100vh;
 }
 
 .memory__game--list {
@@ -163,4 +163,23 @@ body, html {
     border-radius: 5px;
     border: 5px solid #FF0000;
     transform: rotateY( 180deg );
+}
+
+.score_table {
+  flex-direction: column;
+  color: #ffffff;
+  position: absolute;
+  top: calc(50% - 46px);
+  left: 10%;
+  display: none;
+}
+
+.player {
+  font-size: 35px;
+}
+
+.btn-back {
+  position: relative;
+  background-color: #FF0000;
+  margin: 135px -15px;
 }
