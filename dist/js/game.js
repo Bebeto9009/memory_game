@@ -7,6 +7,8 @@ const memory = {
     randomCards: [],
     checkedCards: [],
     click: 0,
+    firstchoice : [],
+    secondchoice : [],
     memoryList : document.querySelector('.memory__game--list'),
     img: [{
             'name' : 'koopa_troopa',
@@ -84,8 +86,7 @@ const memory = {
 
     initGame : function () {
         this.memoryList.innerHTML = '';
-        this.checkedCards[0] = '';
-        this.checkedCards[1] = '';
+        this.checkedCards = [];
         this.click = 0;
     },
 
@@ -117,6 +118,15 @@ const memory = {
             if (e.target === this.checkedCards[0]) {
                 return;
             } else {
+                if (this.firstchoice.length === 0) {
+                    this.firstchoice = e.target;
+                    console.log('first choice z if', this.firstchoice);
+                    console.log('second choice z if', this.secondchoice);
+                } else {
+                    this.secondchoice = e.target;
+                    console.log('first choice z else', this.firstchoice);
+                    console.log('second choice z else', this.secondchoice);
+                }
                 this.click++;
                 this.checkedCards.push(e.target);
                 setTimeout(function() {
@@ -137,16 +147,17 @@ const memory = {
             console.log(`it's match`);
             this.checkedCards[0].style.opacity = '0';
             this.checkedCards[1].style.opacity = '0';
-            // this.nextTurn();
+            this.nextTurn();
         } else {
             console.log(`it doesn't match`);
-            this.checkedCards[0].remove('disabled');
-            this.checkedCards[0].remove('select');
-            this.checkedCards[1].remove('disabled');
-            this.checkedCards[1].remove('select');
-            setTimeout(function() {
-                e.target.classList.add('reverse');
-            }, 250);
+                this.firstchoice.classList.remove('disabled');
+                this.firstchoice.classList.remove('selected');
+                this.secondchoice.classList.remove('disabled');
+                this.secondchoice.classList.remove('selected');
+            // setTimeout(function() {
+                this.firstchoice.classList.add('reverse');
+                this.secondchoice.classList.add('reverse');
+        // }, 250);
             this.nextTurn();
         }
     },
@@ -154,21 +165,24 @@ const memory = {
     nextTurn : function() {
         this.checkedCards = [];
         this.click = 0;
-    }
+        this.firstchoice = [];
+        this.secondchoice = [];
+        console.log('this.checkedCards', this.checkedCards)
+    },
 } // end object memory
 
 startBtn.addEventListener('click', event => {
     event.preventDefault();
     memoryGame.style.display = 'flex';
     scoreTable.style.display = 'flex';
-    memory.startGame();
     // memory.initGame();
+    memory.startGame();
 })
 
 backBtn.addEventListener('click', event => {
     event.preventDefault();
     memoryGame.style.display = 'none';
     scoreTable.style.display = '';
-    // memory.initGame();
     gameList.style.display = 'flex';
+    memory.initGame();
 })
