@@ -5,6 +5,7 @@ const scoreTable = document.querySelector('.score_table');
 const gameList = document.getElementById('game');
 const memory = {
     randomCards: [],
+    checkedCards: [],
     click: 0,
     firstchoice : [],
     secondchoice : [],
@@ -85,8 +86,7 @@ const memory = {
 
     initGame : function () {
         this.memoryList.innerHTML = '';
-        this.firstchoice = '';
-        this.secondchoice = '';
+        this.checkedCards = [];
         this.click = 0;
     },
 
@@ -114,54 +114,60 @@ const memory = {
     }, // end startGame method
 
     selectCard : function(e) {
-        e.target.classList.add('select');
-        e.target.classList.add('disabled');
-
-        setTimeout(function() {
-            e.target.classList.remove('reverse');
-        }, 250);
-
         if (this.click < 2) {
-            if (this.firstchoice.length === 0) {
-                this.firstchoice = e.target;
-                console.log(this.firstchoice.dataset.name)
+            if (e.target === this.checkedCards[0]) {
+                return;
             } else {
-                this.secondchoice = e.target;
-                console.log(this.secondchoice.dataset.name)
+                if (this.firstchoice.length === 0) {
+                    this.firstchoice = e.target;
+                    console.log('first choice z if', this.firstchoice);
+                    console.log('second choice z if', this.secondchoice);
+                } else {
+                    this.secondchoice = e.target;
+                    // console.log('first choice z else', this.firstchoice);
+                    // console.log('second choice z else', this.secondchoice);
+                }
+                this.click++;
+                this.checkedCards.push(e.target);
+                // setTimeout(function() {
+                    e.target.classList.remove('reverse');
+                // }, 250);
+                e.target.classList.add('select');
+                e.target.classList.add('disabled');
+
+                if (this.click > 1) {
+                    this.matchCard();
+                }
+
             }
         }
-
-        if (this.firstchoice.dataset.name === this.secondchoice.dataset.name){
-            console.log('jeeeeeee')
-            setTimeout(this.matchCard.bind(this), 500);
-        } else {
-            setTimeout(this.mismatchCard.bind(this), 500);
-        }
-
-        this.click++;
     }, // end selectCard method
 
     matchCard : function() {
-        console.log(`it's match`);
-        this.firstchoice.style.opacity = '0';
-        this.secondchoice.style.opacity = '0';
-        this.nextTurn();
-    },
-
-    mismatchCard : function() {
-        console.log(`it doesn't match`);
-        this.firstchoice.classList.remove('select');
-        this.secondchoice.classList.remove('select');
-        this.firstchoice.classList.remove('disabled');
-        this.secondchoice.classList.remove('disabled');
-        this.firstchoice.classList.add('reverse');
-        this.secondchoice.classList.add('reverse');
-        console.log('first choice z else', this.firstchoice);
-        console.log('second choice z else', this.secondchoice);
-        this.nextTurn();
+        if (this.checkedCards[0].dataset.name === this.checkedCards[1].dataset.name){
+            console.log(`it's match`);
+            this.firstchoice.style.opacity = '0';
+            this.secondchoice.style.opacity = '0';
+            this.nextTurn();
+        } else {
+            setTimeout(this.nextTurn.bind(this), 500);
+            console.log(`it doesn't match`);
+            // setTimeout(function() {
+            this.firstchoice.classList.remove('select');
+            this.secondchoice.classList.remove('select');
+            this.firstchoice.classList.remove('disabled');
+            this.secondchoice.classList.remove('disabled');
+            this.firstchoice.classList.add('reverse');
+            this.secondchoice.classList.add('reverse');
+                console.log('first choice z else', this.firstchoice);
+                console.log('second choice z else', this.secondchoice);
+            this.nextTurn();
+            // }, 100);
+        }
     },
 
     nextTurn : function() {
+        this.checkedCards = [];
         this.click = 0;
         this.firstchoice = [];
         this.secondchoice = [];
@@ -173,6 +179,7 @@ startBtn.addEventListener('click', event => {
     event.preventDefault();
     memoryGame.style.display = 'flex';
     scoreTable.style.display = 'flex';
+    // memory.initGame();
     memory.startGame();
 })
 
