@@ -124,8 +124,8 @@ const memory = {
                     console.log('second choice z if', this.secondchoice);
                 } else {
                     this.secondchoice = e.target;
-                    console.log('first choice z else', this.firstchoice);
-                    console.log('second choice z else', this.secondchoice);
+                    // console.log('first choice z else', this.firstchoice);
+                    // console.log('second choice z else', this.secondchoice);
                 }
                 this.click++;
                 this.checkedCards.push(e.target);
@@ -150,15 +150,17 @@ const memory = {
             this.nextTurn();
         } else {
             console.log(`it doesn't match`);
-                this.firstchoice.classList.remove('disabled');
-                this.firstchoice.classList.remove('selected');
-                this.secondchoice.classList.remove('disabled');
-                this.secondchoice.classList.remove('selected');
-            // setTimeout(function() {
-                this.firstchoice.classList.add('reverse');
-                this.secondchoice.classList.add('reverse');
-        // }, 250);
+            setTimeout(function() {
+            this.firstchoice.classList.remove('select');
+            this.secondchoice.classList.remove('select');
+            this.firstchoice.classList.remove('disabled');
+            this.secondchoice.classList.remove('disabled');
+            this.firstchoice.classList.add('reverse');
+            this.secondchoice.classList.add('reverse');
+                console.log('first choice z else', this.firstchoice);
+                console.log('second choice z else', this.secondchoice);
             this.nextTurn();
+            }, 100);
         }
     },
 
