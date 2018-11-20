@@ -166,20 +166,32 @@ body, html {
 }
 
 .score_table {
-  flex-direction: column;
-  color: #ffffff;
-  position: absolute;
-  top: calc(50% - 46px);
-  left: 10%;
-  display: none;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    position: absolute;
+    top: calc(50% - 46px);
+    left: 10%;
+    display: none;
 }
 
 .player {
-  font-size: 35px;
+    font-size: 35px;
 }
 
 .btn-back {
-  position: relative;
-  background-color: #FF0000;
-  margin: 135px -15px;
+    position: relative;
+    background-color: #FF0000;
+    margin: 135px -15px;
+}
+
+.active::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 7.5px;
+    background-color: #FF0000;
+    margin: 15px -20px 5px;
+    position: absolute;
 }

@@ -3,6 +3,9 @@ const backBtn = document.querySelector('.btn-back');
 const memoryGame = document.getElementById('memory__game');
 const scoreTable = document.querySelector('.score_table');
 const gameList = document.getElementById('game');
+const player1 = document.getElementById('player1');
+const player2 = document.getElementById('player2');
+
 const memory = {
     randomCards: [],
     click: 0,
@@ -124,15 +127,14 @@ const memory = {
         if (this.click < 2) {
             if (this.firstchoice.length === 0) {
                 this.firstchoice = e.target;
-                console.log(this.firstchoice.dataset.name)
+                // console.log(this.firstchoice.dataset.name)
             } else {
                 this.secondchoice = e.target;
-                console.log(this.secondchoice.dataset.name)
+                // console.log(this.secondchoice.dataset.name)
             }
         }
 
         if (this.firstchoice.dataset.name === this.secondchoice.dataset.name){
-            console.log('jeeeeeee')
             setTimeout(this.matchCard.bind(this), 500);
         } else {
             setTimeout(this.mismatchCard.bind(this), 500);
@@ -159,6 +161,7 @@ const memory = {
         console.log('first choice z else', this.firstchoice);
         console.log('second choice z else', this.secondchoice);
         this.nextTurn();
+        this.nextPlayer();
     },
 
     nextTurn : function() {
@@ -167,6 +170,12 @@ const memory = {
         this.secondchoice = [];
         console.log('next turn')
     },
+
+    nextPlayer : function () {
+        console.log(player1);
+        player1.classList.toggle('active');
+        player2.classList.toggle('active')
+    }
 } // end object memory
 
 startBtn.addEventListener('click', event => {
