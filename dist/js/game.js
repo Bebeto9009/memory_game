@@ -5,6 +5,8 @@ const scoreTable = document.querySelector('.score_table');
 const gameList = document.getElementById('game');
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
+const player1Counter = document.getElementById('player1--counter');
+const player2Counter = document.getElementById('player2--counter');
 
 const memory = {
     randomCards: [],
@@ -147,6 +149,7 @@ const memory = {
         console.log(`it's match`);
         this.firstchoice.style.opacity = '0';
         this.secondchoice.style.opacity = '0';
+        this.points();
         this.nextTurn();
     },
 
@@ -174,7 +177,15 @@ const memory = {
     nextPlayer : function () {
         console.log(player1);
         player1.classList.toggle('active');
-        player2.classList.toggle('active')
+        player2.classList.toggle('active');
+    },
+
+    points : function () {
+        if (player1.classList.contains('active')) {
+            player1Counter.innerHTML += 5;
+        } else if (player2.classList.contains('active')) {
+            player2Counter.innerHTML += 10;
+        }
     }
 } // end object memory
 
