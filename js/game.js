@@ -163,8 +163,11 @@ const memory = {
         this.firstchoice.style.opacity = '0';
         this.secondchoice.style.opacity = '0';
         this.points();
-        this.whoWin();
         this.nextTurn();
+        setTimeout(() => {
+            this.whoWin();
+        }, 20);
+
     },
 
     mismatchCard : function() {
