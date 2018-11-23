@@ -106,7 +106,7 @@ const memory = {
         this.initGame();
         gameList.style.display = 'none';
         const shuffled = this.img.sort(() => .5 - Math.random()); // shuffle
-        let selected = shuffled.slice(0,2) ; //get 2 first elements from shuffle
+        let selected = shuffled.slice(0,18) ; //get 2 first elements from shuffle
         this.randomCards.push(selected);
         let allCard = this.randomCards[0].concat(this.randomCards[0]);
         allCard.sort(() => .5 - Math.random());
@@ -210,8 +210,8 @@ const memory = {
     },
 
     whoWin : function() {
-        console.log('suma', (this.counter1 + this.counter2 === 2));
-        if(this.counter1 + this.counter2 === 2) {
+        console.log('suma', (this.counter1 + this.counter2 === 18));
+        if(this.counter1 + this.counter2 === 18) {
             if (this.counter1 > this.counter2) {
                 console.log('wygrał gracz 1');
                 alert('player 1 win! score: ', this.counter1);
