@@ -91,11 +91,15 @@ const memory = {
         }
     ],
 
-    initGame : function () {
+    initGame : function() {
         this.memoryList.innerHTML = '';
         this.firstchoice = '';
         this.secondchoice = '';
         this.click = 0;
+        this.counter1 = 0;
+        player1Counter.innerText = this.counter1;
+        this.counter2 = 0;
+        player2Counter.innerText = this.counter1;
     },
 
     startGame : function() {
@@ -203,12 +207,15 @@ const memory = {
     },
 
     whoWin : function() {
-        console.log('suma', (this.counter1 + this.counter2 === 18));
+        console.log('suma', (this.counter1 + this.counter2 === 2));
         if(this.counter1 + this.counter2 === 2) {
             if (this.counter1 > this.counter2) {
-                alert('player 1 win! score: ', counter1);
+                console.log('wygrał gracz 1');
+                alert('player 1 win! score: ', this.counter1);
+            } else if (this.counter1 < this.counter2) {
+                alert('player 2 win! score: ', this.counter2);
             } else {
-                alert('player 2 win! score: ', counter2);
+                alert (`It's a tie`);
             }
         }
     }
