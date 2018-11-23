@@ -5,8 +5,8 @@ const scoreTable = document.querySelector('.score_table');
 const gameList = document.getElementById('game');
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
-const player1Counter = document.getElementById('player1--counter');
-const player2Counter = document.getElementById('player2--counter');
+const player1Counter = document.querySelector('.counter1');
+const player2Counter = document.querySelector('.counter2');
 
 const memory = {
     randomCards: [],
@@ -14,6 +14,9 @@ const memory = {
     firstchoice : [],
     secondchoice : [],
     memoryList : document.querySelector('.memory__game--list'),
+    counter1 : 0,
+    counter2 : 0,
+    canPlay : true,
     img: [{
             'name' : 'koopa_troopa',
             'img' : 'img/koopa_troopa.jpg',
@@ -99,7 +102,7 @@ const memory = {
         this.initGame();
         gameList.style.display = 'none';
         const shuffled = this.img.sort(() => .5 - Math.random()); // shuffle
-        let selected = shuffled.slice(0,18) ; //get 2 first elements from shuffle
+        let selected = shuffled.slice(0,2) ; //get 2 first elements from shuffle
         this.randomCards.push(selected);
         let allCard = this.randomCards[0].concat(this.randomCards[0]);
         allCard.sort(() => .5 - Math.random());
@@ -137,9 +140,15 @@ const memory = {
         }
 
         if (this.firstchoice.dataset.name === this.secondchoice.dataset.name){
-            setTimeout(this.matchCard.bind(this), 500);
+            // setTimeout(this.matchCard.bind(this), 500);
+            setTimeout(() => {
+                    this.matchCard();
+            }, 500);
         } else {
-            setTimeout(this.mismatchCard.bind(this), 500);
+            // setTimeout(this.mismatchCard.bind(this), 500);
+            setTimeout(() => {
+                    this.mismatchCard();
+            }, 500);
         }
 
         this.click++;
@@ -150,6 +159,7 @@ const memory = {
         this.firstchoice.style.opacity = '0';
         this.secondchoice.style.opacity = '0';
         this.points();
+        this.whoWin();
         this.nextTurn();
     },
 
@@ -180,11 +190,26 @@ const memory = {
         player2.classList.toggle('active');
     },
 
-    points : function () {
+    points : function() {
         if (player1.classList.contains('active')) {
-            player1Counter.innerHTML += 5;
+            this.counter1++;
+            console.log('counter1', this.counter1)
+            console.log('counter2', this.counter2)
+            player1Counter.innerText = this.counter1;
         } else if (player2.classList.contains('active')) {
-            player2Counter.innerHTML += 10;
+            this.counter2++;
+            player2Counter.innerText = this.counter2;
+        }
+    },
+
+    whoWin : function() {
+        console.log('suma', (this.counter1 + this.counter2 === 18));
+        if(this.counter1 + this.counter2 === 2) {
+            if (this.counter1 > this.counter2) {
+                alert('player 1 win! score: ', counter1);
+            } else {
+                alert('player 2 win! score: ', counter2);
+            }
         }
     }
 } // end object memory
