@@ -16,6 +16,7 @@ const memory = {
     memoryList : document.querySelector('.memory__game--list'),
     counter1 : 0,
     counter2 : 0,
+    cards : 18,
     canPlay : true,
     img: [{
             'name' : 'koopa_troopa',
@@ -92,6 +93,7 @@ const memory = {
     ],
 
     initGame : function() {
+        this.canPlay = true;
         this.memoryList.innerHTML = '';
         this.firstchoice = '';
         this.secondchoice = '';
@@ -106,80 +108,70 @@ const memory = {
         this.initGame();
         gameList.style.display = 'none';
         const shuffled = this.img.sort(() => .5 - Math.random()); // shuffle
-        let selected = shuffled.slice(0,18) ; //get 2 first elements from shuffle
+        let selected = shuffled.slice(0,this.cards) ; //get 2 first elements from shuffle
         this.randomCards.push(selected);
         let allCard = this.randomCards[0].concat(this.randomCards[0]);
         allCard.sort(() => .5 - Math.random());
 
         allCard.forEach((item) => {
-
             const card = document.createElement('img');
-
             card.classList.add('memory__game--item', 'reverse');
             card.dataset.name = item.name;
             card.src = item.img;
-
             this.memoryList.appendChild(card);
-
             card.addEventListener('click', this.selectCard.bind(this), false);
-        })
+        });
     }, // end startGame method
 
     selectCard : function(e) {
-        e.target.classList.add('select');
-        e.target.classList.add('disabled');
+        if (this.canPlay) {
+            e.target.classList.add('select');
+            e.target.classList.add('disabled');
 
-        setTimeout(function() {
-            e.target.classList.remove('reverse');
-        }, 250);
+            setTimeout(function () {
+                e.target.classList.remove('reverse');
+            }, 250);
 
-        if (this.click < 2) {
-            if (this.firstchoice.length === 0) {
-                this.firstchoice = e.target;
-                // console.log(this.firstchoice.dataset.name)
-            } else {
-                this.secondchoice = e.target;
-                // console.log(this.secondchoice.dataset.name)
+            if (this.click < 3) {
+                if (this.firstchoice.length === 0) {
+                    this.firstchoice = e.target;
+
+                } else if (this.firstchoice !== e.target) {
+                    this.secondchoice = e.target;
+                    this.canPlay = false;
+                    this.click++;
+
+                    if (this.firstchoice.dataset.name === this.secondchoice.dataset.name) {
+                        setTimeout(() => {
+                            this.matchCard();
+                        }, 500);
+                    } else {
+                        setTimeout(() => {
+                            this.mismatchCard();
+                        }, 500);
+                    }
+                }
             }
         }
-
-        if (this.firstchoice.dataset.name === this.secondchoice.dataset.name){
-            // setTimeout(this.matchCard.bind(this), 500);
-            setTimeout(() => {
-                    this.matchCard();
-            }, 500);
-        } else {
-            // setTimeout(this.mismatchCard.bind(this), 500);
-            setTimeout(() => {
-                    this.mismatchCard();
-            }, 500);
-        }
-
-        this.click++;
     }, // end selectCard method
 
     matchCard : function() {
-        console.log(`it's match`);
         this.firstchoice.style.opacity = '0';
         this.secondchoice.style.opacity = '0';
         this.points();
         this.nextTurn();
         setTimeout(() => {
             this.whoWin();
-        }, 20);
-
+        }, 220);
     },
 
     mismatchCard : function() {
-        console.log(`it doesn't match`);
         this.firstchoice.classList.remove('select');
         this.secondchoice.classList.remove('select');
         this.firstchoice.classList.remove('disabled');
         this.secondchoice.classList.remove('disabled');
         this.firstchoice.classList.add('reverse');
         this.secondchoice.classList.add('reverse');
-        console.log('first choice z else', this.firstchoice);
-        console.log('second choice z else', this.secondchoice);
         this.nextTurn();
         this.nextPlayer();
     },
@@ -188,11 +180,11 @@ const memory = {
         this.click = 0;
         this.firstchoice = [];
         this.secondchoice = [];
-        console.log('next turn')
+        this.canPlay = true;
     },
 
     nextPlayer : function () {
-        console.log(player1);
+        this.click = 0;
         player1.classList.toggle('active');
         player2.classList.toggle('active');
     },
@@ -200,8 +192,6 @@ const memory = {
     points : function() {
         if (player1.classList.contains('active')) {
             this.counter1++;
-            console.log('counter1', this.counter1)
-            console.log('counter2', this.counter2)
             player1Counter.innerText = this.counter1;
         } else if (player2.classList.contains('active')) {
             this.counter2++;
@@ -210,13 +200,11 @@ const memory = {
     },
 
     whoWin : function() {
-        console.log('suma', (this.counter1 + this.counter2 === 18));
-        if(this.counter1 + this.counter2 === 18) {
+        if(this.counter1 + this.counter2 === this.cards) {
             if (this.counter1 > this.counter2) {
-                console.log('wygrał gracz 1');
-                alert('player 1 win! score: ', this.counter1);
+                alert('Player 1 win! With score: '+ this.counter1);
             } else if (this.counter1 < this.counter2) {
-                alert('player 2 win! score: ', this.counter2);
+                alert('Player 2 win! With score: '+ this.counter2);
             } else {
                 alert (`It's a tie`);
             }
