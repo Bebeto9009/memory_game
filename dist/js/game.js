@@ -217,7 +217,7 @@ startBtn.addEventListener('click', event => {
     memoryGame.style.display = 'flex';
     scoreTable.style.display = 'flex';
     memory.startGame();
-})
+});
 
 backBtn.addEventListener('click', event => {
     event.preventDefault();
@@ -225,4 +225,4 @@ backBtn.addEventListener('click', event => {
     scoreTable.style.display = '';
     gameList.style.display = 'flex';
     memory.initGame();
-})
+});
