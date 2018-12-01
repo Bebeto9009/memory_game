@@ -30,7 +30,7 @@
     <button class="btn btn-play">START</button>
 </form>
 
-<div class="score_table">
+<div class="score-table">
     <span id='player1' class="player player1 active">Player 1</span>
     <span id="player1--counter">Found pairs: <span class="counter1">0</span></span>
     <span id='player2' class="player player2">Player 2</span>
@@ -38,14 +38,30 @@
     <button class="btn btn-back">BACK</button>
 </div>
 
-<div id="memory__game" class="memory__game">
-    <div class="memory__game--list">
+<div id="memory-game" class="memory-game">
+    <div class="memory-game__list">
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
     </div>
 </div>
+
+<!-- to do
+1. dodajemy czas! niech będzie timer, który liczy czas od startu do ogłoszenia wyniku
+2. przycisk restartu - ma byc dodatkowo okno dialogowe "Czy na pewno chcesz rozpocząć grę od nowa"
+3. popup końca gry - wynik + dwa buttony new game, back to start + przekierowania
+4. obsługa graczy - jak dodacie 4 to ma być i 4 graczy w grze. Na razie zmieńcie komputer na user - niech będzie normalnym manualnym graczem. Min 2 graczy, Max 4. I z racji, że min 2 userów, niech będzie defaultowo 2 userów pobierane z jsona.
+5. kto nie ma, niech doda przycisk powrotu do widoku userów (oczywiście, jeśli w trakcie gry to popup z pytaniem czy na pewno chcesz wyjsc z gry)
+-->
+
+<!-- to do #2
+Z racji, że obaj macie w kodzie na data set maczowanie obrazków, mam propozycję aby zrobić skrypt js (taki skrypt co się wkleja do konsoli), który automatycznie będzie odkrywał karty, czytając właśnie data z kodu.
+Trochę taki bot
+Pamiętajcie, by uwzględnić odpowiedni czas przerw między odkrywaniem.
+
+Najlepiej jakby się dało to wywoływać triggerem (click), żeby było to widoczne live
+-->
 
 <script src="js/list_players.js"></script>
 <script src="js/game.js"></script>

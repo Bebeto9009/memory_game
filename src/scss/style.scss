@@ -113,7 +113,7 @@ body, html {
     }
 }
 
-#mario_game {
+#mario-game {
     position: absolute;
     top: 20%;
     left: calc(50% - 280px);
@@ -128,21 +128,21 @@ body, html {
 }
 
 //********************************memory game***********************************
-.memory__game {
+.memory-game {
     display: none;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.memory__game--list {
+.memory-game__list {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     width: 620px;
 }
 
-.memory__game--item {
+.memory-game__item {
     margin: 5px;
     width: 80px;
     height: 120px;
@@ -151,7 +151,7 @@ body, html {
     transform-style: preserve-3d;
 }
 
-.reverse {
+.memory-game__item--reverse {
     width: 80px;
     height: 120px;
     border-radius: 5px;
@@ -159,13 +159,13 @@ body, html {
     content:url('../img/reverse.jpg');
 }
 
-.select {
+.memory-game__item--select {
     border-radius: 5px;
     border: 3px solid #FF0000;
     transform: rotateY( 180deg );
 }
 
-.score_table {
+.score-table {
     flex-direction: column;
     align-items: center;
     color: #ffffff;
