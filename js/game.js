@@ -1,7 +1,7 @@
 const startBtn = document.querySelector('.btn-play');
 const backBtn = document.querySelector('.btn-back');
-const memoryGame = document.getElementById('memory__game');
-const scoreTable = document.querySelector('.score_table');
+const memoryGame = document.getElementById('memory-game');
+const scoreTable = document.querySelector('.score-table');
 const gameList = document.getElementById('game');
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
@@ -13,7 +13,7 @@ const memory = {
     click: 0,
     firstchoice : [],
     secondchoice : [],
-    memoryList : document.querySelector('.memory__game--list'),
+    memoryList : document.querySelector('.memory-game__list'),
     counter1 : 0,
     counter2 : 0,
     cards : 18,
@@ -115,7 +115,7 @@ const memory = {
 
         allCard.forEach((item) => {
             const card = document.createElement('img');
-            card.classList.add('memory__game--item', 'reverse');
+            card.classList.add('memory-game__item', 'memory-game__item--reverse');
             card.dataset.name = item.name;
             card.src = item.img;
             this.memoryList.appendChild(card);
@@ -125,11 +125,11 @@ const memory = {
 
     selectCard : function(e) {
         if (this.canPlay) {
-            e.target.classList.add('select');
-            e.target.classList.add('disabled');
+            e.target.classList.add('memory-game__item--select');
+            e.target.classList.add('memory-game__item--disabled');
 
             setTimeout(function () {
-                e.target.classList.remove('reverse');
+                e.target.classList.remove('memory-game__item--reverse');
             }, 250);
 
             if (this.click < 3) {
@@ -166,12 +166,12 @@ const memory = {
     },
 
     mismatchCard : function() {
-        this.firstchoice.classList.remove('select');
-        this.secondchoice.classList.remove('select');
-        this.firstchoice.classList.remove('disabled');
-        this.secondchoice.classList.remove('disabled');
-        this.firstchoice.classList.add('reverse');
-        this.secondchoice.classList.add('reverse');
+        this.firstchoice.classList.remove('memory-game__item--select');
+        this.secondchoice.classList.remove('memory-game__item--select');
+        this.firstchoice.classList.remove('memory-game__item--disabled');
+        this.secondchoice.classList.remove('memory-game__item--disabled');
+        this.firstchoice.classList.add('memory-game__item--reverse');
+        this.secondchoice.classList.add('memory-game__item--reverse');
         this.nextTurn();
         this.nextPlayer();
     },
