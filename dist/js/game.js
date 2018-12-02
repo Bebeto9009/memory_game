@@ -7,16 +7,20 @@ const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
 const player1Counter = document.querySelector('.counter1');
 const player2Counter = document.querySelector('.counter2');
+const seconds = document.getElementById('seconds');
+const minutes = document.getElementById('minutes');
 
 const memory = {
-    randomCards: [],
-    click: 0,
+    randomCards : [],
+    click : 0,
     firstchoice : [],
     secondchoice : [],
     memoryList : document.querySelector('.memory-game__list'),
     counter1 : 0,
     counter2 : 0,
-    cards : 18,
+    cards : 2,
+    sec : 0,
+    min : 0,
     canPlay : true,
     img: [{
             'name' : 'koopa_troopa',
@@ -202,21 +206,50 @@ const memory = {
     whoWin : function() {
         if(this.counter1 + this.counter2 === this.cards) {
             if (this.counter1 > this.counter2) {
-                alert('Player 1 win! With score: '+ this.counter1);
+                alert('Player 1 win! With score: '+ this.counter1 + ' time ' + min+':'+sec);
+                stopTimer();
             } else if (this.counter1 < this.counter2) {
-                alert('Player 2 win! With score: '+ this.counter2);
+                alert('Player 2 win! With score: '+ this.counter2 + ' time ' + min+':'+sec);
+                stopTimer();
             } else {
                 alert (`It's a tie`);
+                stopTimer();
             }
         }
-    }
+    },
 } // end object memory
+
+/* timer */
+let sec = 0;
+let min = 0;
+seconds.innerHTML = sec.toString().padStart(2, "0");
+minutes.innerHTML = min.toString().padStart(2, "0");
+let startTimer = null;
+
+const timer = function () {
+    sec++;
+    minutes.innerHTML = Math.floor(sec / 60).toString().padStart(2, "0");
+    seconds.innerHTML = (sec % 60).toString().padStart(2, "0");
+    console.log(sec);
+};
+
+function stopTimer () {
+    if (startTimer){
+        clearInterval(startTimer);
+        sec = 0;
+        min = 0;
+        seconds.innerHTML = sec.toString().padStart(2, "0");
+        minutes.innerHTML = min.toString().padStart(2, "0");
+    }
+};
+/* end timer */
 
 startBtn.addEventListener('click', event => {
     event.preventDefault();
     memoryGame.style.display = 'flex';
     scoreTable.style.display = 'flex';
     memory.startGame();
+    startTimer = setInterval(timer, 1000);
 });
 
 backBtn.addEventListener('click', event => {
@@ -225,4 +258,6 @@ backBtn.addEventListener('click', event => {
     scoreTable.style.display = '';
     gameList.style.display = 'flex';
     memory.initGame();
+    stopTimer();
 });
+
