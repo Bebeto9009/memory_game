@@ -39,6 +39,9 @@
 </div>
 
 <div id="memory-game" class="memory-game">
+    <div class="memory-game__timer">
+        <span id="minutes"></span>:<span id="seconds"></span>
+    </div>
     <div class="memory-game__list">
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
         <!--<img class="memory__game&#45;&#45;item reverse" src="img/reverse.jpg">-->
@@ -48,7 +51,7 @@
 </div>
 
 <!-- to do
-1. dodajemy czas! niech będzie timer, który liczy czas od startu do ogłoszenia wyniku
++1. dodajemy czas! niech będzie timer, który liczy czas od startu do ogłoszenia wyniku
 2. przycisk restartu - ma byc dodatkowo okno dialogowe "Czy na pewno chcesz rozpocząć grę od nowa"
 3. popup końca gry - wynik + dwa buttony new game, back to start + przekierowania
 4. obsługa graczy - jak dodacie 4 to ma być i 4 graczy w grze. Na razie zmieńcie komputer na user - niech będzie normalnym manualnym graczem. Min 2 graczy, Max 4. I z racji, że min 2 userów, niech będzie defaultowo 2 userów pobierane z jsona.
