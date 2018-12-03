@@ -244,6 +244,44 @@ function stopTimer () {
 };
 /* end timer */
 
+/* modal */
+const modalReset = document.getElementById('modal__reset');
+const modalResetBtn = document.querySelector('.btn-reset');
+const modalResetNo = document.getElementById('modal__reset--no');
+const modalResetYes = document.getElementById('modal__reset--yes');
+
+function modalResetOn() {
+    modalReset.classList.add('modal--show');
+}
+
+function modalResetOff() {
+    modalReset.classList.remove('modal--show');
+}
+
+modalResetBtn.addEventListener('click', event => {
+    event.preventDefault();
+    modalResetOn();
+});
+
+modalResetNo.addEventListener('click', event => {
+    event.preventDefault();
+    modalResetOff();
+})
+
+modalResetYes.addEventListener('click', event => {
+    event.preventDefault();
+    modalResetOff();
+    stopTimer();
+    startTimer = setInterval(timer, 1000);
+    memory.initGame();
+    memory.startGame();
+})
+
+
+
+
+/* end modal */
+
 startBtn.addEventListener('click', event => {
     event.preventDefault();
     memoryGame.style.display = 'flex';

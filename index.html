@@ -36,6 +36,7 @@
     <span id='player2' class="player player2">Player 2</span>
     <span id="player2--counter">Found pairs: <span class="counter2">0</span></span>
     <button class="btn btn-back">BACK</button>
+    <button class="btn btn-reset">RESET</button>
 </div>
 
 <div id="memory-game" class="memory-game">
@@ -50,9 +51,17 @@
     </div>
 </div>
 
+<div id="modal__reset" class="modal">
+    <div class="modal__content">
+        <h1 class="modal__title">Do you want reset the game?</h1>
+        <button id="modal__reset--yes" class="btn btn-yes">YES</button>
+        <button id="modal__reset--no" class="btn btn-no">NO</button>
+    </div>
+</div>
+
 <!-- to do
 +1. dodajemy czas! niech będzie timer, który liczy czas od startu do ogłoszenia wyniku
-2. przycisk restartu - ma byc dodatkowo okno dialogowe "Czy na pewno chcesz rozpocząć grę od nowa"
++2. przycisk restartu - ma byc dodatkowo okno dialogowe "Czy na pewno chcesz rozpocząć grę od nowa"
 3. popup końca gry - wynik + dwa buttony new game, back to start + przekierowania
 4. obsługa graczy - jak dodacie 4 to ma być i 4 graczy w grze. Na razie zmieńcie komputer na user - niech będzie normalnym manualnym graczem. Min 2 graczy, Max 4. I z racji, że min 2 userów, niech będzie defaultowo 2 userów pobierane z jsona.
 5. kto nie ma, niech doda przycisk powrotu do widoku userów (oczywiście, jeśli w trakcie gry to popup z pytaniem czy na pewno chcesz wyjsc z gry)
