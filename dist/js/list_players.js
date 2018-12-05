@@ -1,10 +1,10 @@
-const firstPlayer = 'https://raw.githubusercontent.com/Bebeto9009/list_of_players/master/player.json';
+const players = 'https://raw.githubusercontent.com/Bebeto9009/memory_game/master/player.json';
 let obj = [];
 let playerArray = [];
 let list = document.querySelector('.game__section');
 let btnNewPlayer = document.querySelector('.btn-add');
-let namePlayer = document.querySelector('.user__name');
-let gameRow = document.querySelector('.user');
+let namePlayer = document.querySelectorAll('.user__name');
+let gameRow = document.querySelectorAll('.user');
 let ol = document.querySelector('ol');
 let storedArr = [];
 let namesArr = [];
@@ -27,7 +27,7 @@ for (let i = 0; i < allPlayers.length; i++) {
 
 
 //**************** fetch ****************//
-fetch(firstPlayer)
+fetch(players)
     .then(function (response) {
         if(response.ok) {
             return response.json();
@@ -38,15 +38,19 @@ fetch(firstPlayer)
     .then(function (data) {
         obj = data;
         playerArray = obj.map(el => Object.values(el));
-
-        namePlayer.value = playerArray[0][1];
     })
     .catch(function (error) {
         console.log(error);
     });
 //**************** fetch ****************//
+function addPlayers() {
+    for (let i=0; i<playerArray.length; i++){
+        addNewRow(playerArray[i][1]);
+    }
+};
+addPlayers();
 
-function addNewRow() {
+function addNewRow(newPlayer) {
         let playerLi = document.createElement('li');
 
         let playersRow = document.createElement('div');
@@ -54,6 +58,7 @@ function addNewRow() {
 
         let namePlayer = document.createElement('input');
         namePlayer.classList.add('user__name');
+        namePlayer.value = newPlayer;
         namePlayer.required = true;
 
         let editPlayer = document.createElement('i');
@@ -113,7 +118,7 @@ function countPlayer() {
 
 btnNewPlayer.addEventListener('click', function(event) {
     event.preventDefault();
-    addNewRow();
+    addNewRow(null);
     this.disabled = true;
     disableEdit();
 }); // create row for new player
@@ -153,7 +158,7 @@ document.addEventListener('click', function(e) {
         namesArr = [];
         let namePlayer = document.querySelectorAll('.user__name');
         console.log(namePlayer);
-        for (let i = 1; i < namePlayer.length; i++){
+        for (let i = 0; i < namePlayer.length; i++){
             namesArr.push(namePlayer[i].value);
         }
         localStorage.setItem('items', JSON.stringify(namesArr));
@@ -170,11 +175,6 @@ document.addEventListener('click', function(e) {
         }
     }
 }); //crud
-
-
-
-
-
 
 
 
