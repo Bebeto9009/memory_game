@@ -1,10 +1,10 @@
-const firstPlayer = 'https://raw.githubusercontent.com/Bebeto9009/memory_game/master/player.json';
+const players = 'https://raw.githubusercontent.com/Bebeto9009/memory_game/master/player.json';
 let obj = [];
 let playerArray = [];
 let list = document.querySelector('.game__section');
 let btnNewPlayer = document.querySelector('.btn-add');
 let namePlayer = document.querySelectorAll('.user__name');
-let gameRow = document.querySelector('.user');
+let gameRow = document.querySelectorAll('.user');
 let ol = document.querySelector('ol');
 let storedArr = [];
 let namesArr = [];
@@ -15,67 +15,69 @@ namesArr = items;
 storedArr = items;
 items.forEach(addNewRow);
 let allPlayers = Array.from(document.querySelectorAll('.user__name'));
-allPlayers.splice(0,2);
+allPlayers.shift();
 countPlayer();
 
 for (let i = 0; i < allPlayers.length; i++) {
-    console.log(allPlayers[i].childNodes)
     allPlayers[i].value = items[i];
     allPlayers[i].disabled = true;
     allPlayers[i].parentElement.childNodes[1].style.display = 'block';
     allPlayers[i].parentElement.childNodes[2].style.display = 'none';
 } // edit icon on default for element from LS
 
-
 //**************** fetch ****************//
-fetch(firstPlayer)
+fetch(players)
     .then(function (response) {
         if(response.ok) {
             return response.json();
         } else {
             throw new Error();
         }
-    })
+})
     .then(function (data) {
         obj = data;
         playerArray = obj.map(el => Object.values(el));
-
-        console.log(namePlayer)
-        namePlayer[0].value = playerArray[0][1];
-        namePlayer[1].value = playerArray[1][1];
+        addPlayers();
     })
     .catch(function (error) {
         console.log(error);
     });
 //**************** fetch ****************//
 
-function addNewRow() {
-    let playerLi = document.createElement('li');
+function addPlayers() {
+    for (let i=0; i<playerArray.length; i++){
+        addNewRow(playerArray[i][1]);
+    }
+};
 
-    let playersRow = document.createElement('div');
-    playersRow.classList.add('user');
+function addNewRow(newPlayer) {
+        let playerLi = document.createElement('li');
 
-    let namePlayer = document.createElement('input');
-    namePlayer.classList.add('user__name');
-    namePlayer.required = true;
+        let playersRow = document.createElement('div');
+        playersRow.classList.add('user');
 
-    let editPlayer = document.createElement('i');
-    editPlayer.classList.add('fas', 'fa-edit');
-    editPlayer.style.display = 'none';
+        let namePlayer = document.createElement('input');
+        namePlayer.classList.add('user__name');
+        namePlayer.value = newPlayer;
+        namePlayer.required = true;
 
-    let removePlayer = document.createElement('i');
-    removePlayer.classList.add('fas', 'fa-trash-alt');
+        let editPlayer = document.createElement('i');
+        editPlayer.classList.add('fas', 'fa-edit');
+        editPlayer.style.display = 'none';
 
-    let acceptNewPlayer = document.createElement('i');
-    acceptNewPlayer.classList.add('fas', 'fa-check');
+        let removePlayer = document.createElement('i');
+        removePlayer.classList.add('fas', 'fa-trash-alt');
 
-    list.appendChild(ol);
-    ol.appendChild(playerLi);
-    playerLi.appendChild(playersRow);
-    playersRow.appendChild(namePlayer);
-    playersRow.appendChild(editPlayer);
-    playersRow.appendChild(acceptNewPlayer);
-    playersRow.appendChild(removePlayer);
+        let acceptNewPlayer = document.createElement('i');
+        acceptNewPlayer.classList.add('fas', 'fa-check');
+
+        list.appendChild(ol);
+        ol.appendChild(playerLi);
+        playerLi.appendChild(playersRow);
+        playersRow.appendChild(namePlayer);
+        playersRow.appendChild(editPlayer);
+        playersRow.appendChild(acceptNewPlayer);
+        playersRow.appendChild(removePlayer);
 }
 
 function disableEdit(){
@@ -116,7 +118,7 @@ function countPlayer() {
 
 btnNewPlayer.addEventListener('click', function(event) {
     event.preventDefault();
-    addNewRow();
+    addNewRow(null);
     this.disabled = true;
     disableEdit();
 }); // create row for new player
@@ -129,7 +131,7 @@ document.addEventListener('click', function(e) {
         countPlayer();
     }
     if (e.target.className.includes('fa-check') && (e.target.parentElement.childNodes[0].value === '')) {
-        return;
+       return;
     } else {
         if (e.target.className.includes('fa-check')) {
             e.target.parentNode.childNodes[0].disabled = true; // disable name input
@@ -156,7 +158,7 @@ document.addEventListener('click', function(e) {
         namesArr = [];
         let namePlayer = document.querySelectorAll('.user__name');
         console.log(namePlayer);
-        for (let i = 1; i < namePlayer.length; i++){
+        for (let i = 0; i < namePlayer.length; i++){
             namesArr.push(namePlayer[i].value);
         }
         localStorage.setItem('items', JSON.stringify(namesArr));
@@ -173,17 +175,6 @@ document.addEventListener('click', function(e) {
         }
     }
 }); //crud
-
-btnPlay.addEventListener('click', function () {
-    console.log(game_mario[0].classList)
-    game_mario[0].classList.toggle('is-display');
-    let playerList = document.getElementById('game');
-    playerList.style.display = 'none';
-});
-
-
-
-
 
 
 
