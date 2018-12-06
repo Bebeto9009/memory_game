@@ -107,7 +107,7 @@ function enableEdit(){
 }
 
 function countPlayer() {
-    if (namesArr.length < 3) {
+    if (namesArr.length < 2) {
         btnNewPlayer.disabled = false;
     } else {
         btnNewPlayer.disabled = true;
@@ -156,7 +156,7 @@ document.addEventListener('click', function(e) {
         namesArr = [];
         let namePlayer = document.querySelectorAll('.user__name');
         console.log(namePlayer);
-        for (let i = 1; i < namePlayer.length; i++){
+        for (let i = 2; i < namePlayer.length; i++){
             namesArr.push(namePlayer[i].value);
         }
         localStorage.setItem('items', JSON.stringify(namesArr));
