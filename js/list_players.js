@@ -19,7 +19,6 @@ allPlayers.splice(0,2);
 countPlayer();
 
 for (let i = 0; i < allPlayers.length; i++) {
-    console.log(allPlayers[i].childNodes)
     allPlayers[i].value = items[i];
     allPlayers[i].disabled = true;
     allPlayers[i].parentElement.childNodes[1].style.display = 'block';
@@ -40,7 +39,6 @@ fetch(firstPlayer)
         obj = data;
         playerArray = obj.map(el => Object.values(el));
 
-        console.log(namePlayer)
         namePlayer[0].value = playerArray[0][1];
         namePlayer[1].value = playerArray[1][1];
     })
@@ -155,7 +153,6 @@ document.addEventListener('click', function(e) {
     function addNames() {
         namesArr = [];
         let namePlayer = document.querySelectorAll('.user__name');
-        console.log(namePlayer);
         for (let i = 2; i < namePlayer.length; i++){
             namesArr.push(namePlayer[i].value);
         }
@@ -173,10 +170,14 @@ document.addEventListener('click', function(e) {
         }
     }
 }); //crud
+let finalPlayers = [];
 
 btnPlay.addEventListener('click', function () {
-    console.log(game_mario[0].classList)
-    game_mario[0].classList.toggle('is-display');
+    let players = document.querySelectorAll('.user__name');
+    // console.log(players.value);
+    finalPlayers.push(players);
+    console.log(finalPlayers);
+    // game_mario[0].classList.toggle('is-display');
     let playerList = document.getElementById('game');
     playerList.style.display = 'none';
 });
