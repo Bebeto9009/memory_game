@@ -9,6 +9,7 @@ const player1Counter = document.querySelector('.counter1');
 const player2Counter = document.querySelector('.counter2');
 const seconds = document.getElementById('seconds');
 const minutes = document.getElementById('minutes');
+const activePlayers = document.querySelector('.score-table__active-players');
 
 const memory = {
     randomCards : [],
@@ -102,15 +103,23 @@ const memory = {
         this.firstchoice = '';
         this.secondchoice = '';
         this.click = 0;
-        this.counter1 = 0;
-        player1Counter.innerText = this.counter1;
-        this.counter2 = 0;
-        player2Counter.innerText = this.counter1;
+    },
+
+    generatePlayers : function() {
+        for (let i =0; i < finalPlayers.length; i++) {
+            console.log('final', finalPlayers[i])
+            let newPlayer = document.createElement("span");
+            newPlayer.id = "player"+finalPlayers[i];
+            newPlayer.classList.add('player', 'player1', 'active');
+            newPlayer.innerText = finalPlayers[i].value
+            activePlayers.appendChild(newPlayer)
+        }
     },
 
     startGame : function() {
         this.initGame();
         gameList.style.display = 'none';
+        this.generatePlayers();
         const shuffled = this.img.sort(() => .5 - Math.random()); // shuffle
         let selected = shuffled.slice(0,this.cards) ; //get 2 first elements from shuffle
         this.randomCards.push(selected);
@@ -275,10 +284,9 @@ modalResetYes.addEventListener('click', event => {
     startTimer = setInterval(timer, 1000);
     memory.initGame();
     memory.startGame();
+    activePlayers.innerHTML = '';
+    memory.generatePlayers();
 })
-
-
-
 
 /* end modal */
 
@@ -291,6 +299,7 @@ startBtn.addEventListener('click', event => {
 });
 
 backBtn.addEventListener('click', event => {
+    activePlayers.innerHTML = '';
     event.preventDefault();
     memoryGame.style.display = 'none';
     scoreTable.style.display = '';
