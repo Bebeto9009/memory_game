@@ -173,9 +173,10 @@ document.addEventListener('click', function(e) {
 let finalPlayers = [];
 
 btnPlay.addEventListener('click', function () {
-    let players = document.querySelectorAll('.user__name');
+    // let players = document.querySelectorAll('.user__name');
     // console.log(players.value);
-    finalPlayers.push(players);
+    // finalPlayers.push(players);
+    finalPlayers = [].slice.call(document.querySelectorAll(".user__name"))
     console.log(finalPlayers);
     // game_mario[0].classList.toggle('is-display');
     let playerList = document.getElementById('game');

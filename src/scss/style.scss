@@ -181,6 +181,11 @@ body, html {
     display: none;
 }
 
+.score-table__active-players {
+    display: flex;
+    flex-direction: column;
+}
+
 .player {
     font-size: 35px;
     margin-top: 15px;
