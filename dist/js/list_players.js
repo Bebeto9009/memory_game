@@ -170,14 +170,16 @@ document.addEventListener('click', function(e) {
         }
     }
 }); //crud
+let tempPlayers = [];
 let finalPlayers = [];
 
 btnPlay.addEventListener('click', function () {
-    // let players = document.querySelectorAll('.user__name');
-    // console.log(players.value);
-    // finalPlayers.push(players);
-    finalPlayers = [].slice.call(document.querySelectorAll(".user__name"))
-    console.log(finalPlayers);
+    if (namesArr.length > -1){
+        tempPlayers.push(namePlayer[0].value, namePlayer[1].value);
+        finalPlayers = tempPlayers.concat(namesArr);
+    } else {
+        finalPlayers.push(namePlayer[0].value, namePlayer[1].value);
+    }
     // game_mario[0].classList.toggle('is-display');
     let playerList = document.getElementById('game');
     playerList.style.display = 'none';
