@@ -108,10 +108,15 @@ const memory = {
     generatePlayers : function() {
         for (let i =0; i < finalPlayers.length; i++) {
             console.log('final', finalPlayers[i])
-            let newPlayer = document.createElement("span");
-            newPlayer.id = "player"+finalPlayers[i];
-            newPlayer.classList.add('player', 'player1', 'active');
-            newPlayer.innerText = finalPlayers[i].value
+            let newPlayer = document.createElement('span');
+            newPlayer.id = finalPlayers[i];
+            newPlayer.classList.add('player');
+            newPlayer.innerText = finalPlayers[i];
+            let newCounter = document.createElement('span');
+            newCounter.id = finalPlayers[i] + '--counter';
+            newCounter.classList.add('counter');
+            newCounter.innerText = 'Found pairs: ';
+            newPlayer.appendChild(newCounter);
             activePlayers.appendChild(newPlayer)
         }
     },
@@ -198,8 +203,16 @@ const memory = {
 
     nextPlayer : function () {
         this.click = 0;
-        player1.classList.toggle('active');
-        player2.classList.toggle('active');
+        for (let i =0; i < finalPlayers.length; i++) {
+            finalPlayers[i].classList.add('active');
+            // console.log('nextPlayer')
+
+
+        }
+        finalPlayers[1].classList.add('active');
+        console.log('fina', finalPlayers[1])
+        // player1.classList.toggle('active');
+        // player2.classList.toggle('active');
     },
 
     points : function() {
@@ -296,11 +309,13 @@ startBtn.addEventListener('click', event => {
     scoreTable.style.display = 'flex';
     memory.startGame();
     startTimer = setInterval(timer, 1000);
+    console.log(activePlayers)
 });
 
 backBtn.addEventListener('click', event => {
-    activePlayers.innerHTML = '';
     event.preventDefault();
+    activePlayers.innerHTML = '';
+    tempPlayers = [];
     memoryGame.style.display = 'none';
     scoreTable.style.display = '';
     gameList.style.display = 'flex';
