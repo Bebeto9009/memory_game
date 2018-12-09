@@ -3,13 +3,14 @@ const backBtn = document.querySelector('.btn-back');
 const memoryGame = document.getElementById('memory-game');
 const scoreTable = document.querySelector('.score-table');
 const gameList = document.getElementById('game');
-const player1 = document.getElementById('player1');
-const player2 = document.getElementById('player2');
-const player1Counter = document.querySelector('.counter1');
-const player2Counter = document.querySelector('.counter2');
+// const player1 = document.getElementById('player1');
+// const player2 = document.getElementById('player2');
+// const player1Counter = document.querySelector('.counter1');
+// const player2Counter = document.querySelector('.counter2');
 const seconds = document.getElementById('seconds');
 const minutes = document.getElementById('minutes');
 const activePlayers = document.querySelector('.score-table__active-players');
+const activePlayersList = [];
 
 const memory = {
     randomCards : [],
@@ -22,6 +23,7 @@ const memory = {
     cards : 2,
     sec : 0,
     min : 0,
+    npCounter : 0,
     canPlay : true,
     img: [{
             'name' : 'koopa_troopa',
@@ -106,18 +108,23 @@ const memory = {
     },
 
     generatePlayers : function() {
-        for (let i =0; i < finalPlayers.length; i++) {
-            console.log('final', finalPlayers[i])
+        for (let i = 0; i < finalPlayers.length; i++) {
             let newPlayer = document.createElement('span');
-            newPlayer.id = finalPlayers[i];
-            newPlayer.classList.add('player');
+            newPlayer.id = i+1;
+            newPlayer.classList.add('score-table__player');
             newPlayer.innerText = finalPlayers[i];
             let newCounter = document.createElement('span');
             newCounter.id = finalPlayers[i] + '--counter';
-            newCounter.classList.add('counter');
+            newCounter.classList.add('score-table__counter');
             newCounter.innerText = 'Found pairs: ';
+            let newCounterScore = document.createElement('span');
+            newCounterScore.classList.add('score-table__counter--score');
+            newCounterScore.innerText = 0;
             newPlayer.appendChild(newCounter);
-            activePlayers.appendChild(newPlayer)
+            newCounter.appendChild(newCounterScore);
+            activePlayers.appendChild(newPlayer);
+            activePlayersList.push(newPlayer);
+            activePlayersList[0].classList.add('active')
         }
     },
 
@@ -201,18 +208,25 @@ const memory = {
         this.canPlay = true;
     },
 
-    nextPlayer : function () {
+    nextPlayer: function () {
         this.click = 0;
-        for (let i =0; i < finalPlayers.length; i++) {
-            finalPlayers[i].classList.add('active');
-            // console.log('nextPlayer')
-
-
+        this.npCounter++;
+        console.log('npCounter', this.npCounter)
+        for (let i = 0; i < activePlayersList.length; i++) {
+            if (this.npCounter > activePlayersList.length) {
+                this.npCounter = 0;
+                console.log('pierwszy if', this.npCounter, activePlayersList.length)
+            } else {
+                if (activePlayersList[i].classList.contains('active')) {
+                    activePlayersList[i].classList.remove('active');
+                    console.log('drugi if', this.npCounter)
+                    if (activePlayersList[this.npCounter] < activePlayersList){
+                        activePlayersList[this.npCounter].classList.add('active');
+                    }
+                    // return;
+                }
+            }
         }
-        finalPlayers[1].classList.add('active');
-        console.log('fina', finalPlayers[1])
-        // player1.classList.toggle('active');
-        // player2.classList.toggle('active');
     },
 
     points : function() {
@@ -252,7 +266,6 @@ const timer = function () {
     sec++;
     minutes.innerHTML = Math.floor(sec / 60).toString().padStart(2, "0");
     seconds.innerHTML = (sec % 60).toString().padStart(2, "0");
-    console.log(sec);
 };
 
 function stopTimer () {
@@ -309,7 +322,6 @@ startBtn.addEventListener('click', event => {
     scoreTable.style.display = 'flex';
     memory.startGame();
     startTimer = setInterval(timer, 1000);
-    console.log(activePlayers)
 });
 
 backBtn.addEventListener('click', event => {

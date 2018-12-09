@@ -171,99 +171,100 @@ body, html {
 }
 
 .score-table {
-    flex-direction: column;
-    color: #ffffff;
-    position: absolute;
-    //top: calc(50% - 46px);
-    height: 100vh;
-    justify-content: center;
-    left: 10%;
-    display: none;
+  flex-direction: column;
+  color: #ffffff;
+  position: absolute;
+  //top: calc(50% - 46px);
+  height: 100vh;
+  justify-content: center;
+  left: 10%;
+  display: none;
 }
 
 .score-table__active-players {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.player {
-    font-size: 35px;
-    margin-top: 15px;
+.score-table__player {
+  font-size: 35px;
+  margin-top: 15px;
+}
+
+.score-table__counter {
+  display: block;
+  font-size: 16px;
 }
 
 .btn-back {
-    position: relative;
-    background-color: #FF0000;
-    margin: 35px -15px;
+  position: relative;
+  background-color: #FF0000;
+  margin: 35px -15px;
 }
 
 .btn-reset {
-    position: relative;
-    background-color: #555555;
-    margin: 0 -15px;
+  position: relative;
+  background-color: #555555;
+  margin: 0 -15px;
 }
 
 .active::before {
-    content: '';
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 7.5px;
-    background-color: #FF0000;
-    margin: 15px -20px 5px;
-    position: absolute;
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  background-color: #FF0000;
+  margin: 15px -20px 5px;
+  position: absolute;
 }
 
 .memory-game__timer{
-    position: relative;
-    color: #fff;
-    font-size: 35px;
-    margin: 0 0 35px;
+  position: relative;
+  color: #fff;
+  font-size: 35px;
+  margin: 0 0 35px;
 }
 
 //***** modal ******//
 .modal {
-    position: fixed;
-    left: 25%;
-    top: 25%;
-    width: 50%;
-    height: 50%;
-    background-color: #ffffff;
-    border-radius: 20px;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.1);
-    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+  position: fixed;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: #ffffff;
+  border-radius: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
 .modal__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .modal--show {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1.0);
-    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
 .btn-yes {
-    left: 50%;
-    background-color: green;
+  left: 50%;
+  background-color: green;
 }
 
 .btn-no {
-    background-color: red;
+  background-color: red;
 }
 
 .modal__title {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 
-.counter {
-    display: block;
-    font-size: 16px;
-}
