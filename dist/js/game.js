@@ -108,6 +108,11 @@ const memory = {
     },
 
     generatePlayers : function() {
+        let newCounters = [];
+        for (let i = 0; i < finalPlayers.length; i++) {
+            newCounters[i] = 'counter'+i;
+            console.log(newCounters)
+        }
         for (let i = 0; i < finalPlayers.length; i++) {
             let newPlayer = document.createElement('span');
             newPlayer.id = i+1;
@@ -119,7 +124,7 @@ const memory = {
             newCounter.innerText = 'Found pairs: ';
             let newCounterScore = document.createElement('span');
             newCounterScore.classList.add('score-table__counter--score');
-            newCounterScore.innerText = 0;
+            newCounterScore.innerHTML = 0;
             newPlayer.appendChild(newCounter);
             newCounter.appendChild(newCounterScore);
             activePlayers.appendChild(newPlayer);
@@ -213,7 +218,7 @@ const memory = {
         this.npCounter++;
         console.log('npCounter', this.npCounter)
         for (let i = 0; i < activePlayersList.length; i++) {
-            if (this.npCounter > activePlayersList.length) {
+            if (this.npCounter+1 > activePlayersList.length) {
                 this.npCounter = 0;
                 console.log('pierwszy if', this.npCounter, activePlayersList.length)
             } else {
@@ -230,12 +235,18 @@ const memory = {
     },
 
     points : function() {
-        if (player1.classList.contains('active')) {
-            this.counter1++;
-            player1Counter.innerText = this.counter1;
-        } else if (player2.classList.contains('active')) {
-            this.counter2++;
-            player2Counter.innerText = this.counter2;
+
+        for (let i = 0; i < activePlayersList.length; i++) {
+            if (activePlayersList[i].classList.contains('active')) {
+                console.log(activePlayersList[i].childNodes[1].firstElementChild.innerHTML = playercount)
+            }
+            // if (player1.classList.contains('active')) {
+            //     this.counter1++;
+            //     player1Counter.innerText = this.counter1;
+            // } else if (player2.classList.contains('active')) {
+            //     this.counter2++;
+            //     player2Counter.innerText = this.counter2;
+            // }
         }
     },
 
