@@ -3,10 +3,6 @@ const backBtn = document.querySelector('.btn-back');
 const memoryGame = document.getElementById('memory-game');
 const scoreTable = document.querySelector('.score-table');
 const gameList = document.getElementById('game');
-// const player1 = document.getElementById('player1');
-// const player2 = document.getElementById('player2');
-// const player1Counter = document.querySelector('.counter1');
-// const player2Counter = document.querySelector('.counter2');
 const seconds = document.getElementById('seconds');
 const minutes = document.getElementById('minutes');
 const activePlayers = document.querySelector('.score-table__active-players');
@@ -18,17 +14,16 @@ const memory = {
     firstchoice : [],
     secondchoice : [],
     memoryList : document.querySelector('.memory-game__list'),
-    counter1 : 0,
-    counter2 : 0,
+    counter : [],
     cards : 2,
     sec : 0,
     min : 0,
     npCounter : 0,
     canPlay : true,
     img: [{
-            'name' : 'koopa_troopa',
-            'img' : 'img/koopa_troopa.jpg',
-        },
+        'name' : 'koopa_troopa',
+        'img' : 'img/koopa_troopa.jpg',
+    },
         {
             'name' : 'luigi',
             'img' : 'img/luigi.jpg',
@@ -100,6 +95,7 @@ const memory = {
     ],
 
     initGame : function() {
+        activePlayersList.length = [];
         this.canPlay = true;
         this.memoryList.innerHTML = '';
         this.firstchoice = '';
@@ -109,11 +105,10 @@ const memory = {
 
     generatePlayers : function() {
         let newCounters = [];
+
         for (let i = 0; i < finalPlayers.length; i++) {
+            this.counter[i] = 0;
             newCounters[i] = 'counter'+i;
-            console.log(newCounters)
-        }
-        for (let i = 0; i < finalPlayers.length; i++) {
             let newPlayer = document.createElement('span');
             newPlayer.id = i+1;
             newPlayer.classList.add('score-table__player');
@@ -124,12 +119,13 @@ const memory = {
             newCounter.innerText = 'Found pairs: ';
             let newCounterScore = document.createElement('span');
             newCounterScore.classList.add('score-table__counter--score');
-            newCounterScore.innerHTML = 0;
+            newCounterScore.innerHTML = this.counter[i];
             newPlayer.appendChild(newCounter);
             newCounter.appendChild(newCounterScore);
             activePlayers.appendChild(newPlayer);
             activePlayersList.push(newPlayer);
-            activePlayersList[0].classList.add('active')
+            activePlayersList[0].classList.add('active');
+            console.log(activePlayersList)
         }
     },
 
@@ -228,7 +224,6 @@ const memory = {
                     if (activePlayersList[this.npCounter] < activePlayersList){
                         activePlayersList[this.npCounter].classList.add('active');
                     }
-                    // return;
                 }
             }
         }
@@ -238,25 +233,22 @@ const memory = {
 
         for (let i = 0; i < activePlayersList.length; i++) {
             if (activePlayersList[i].classList.contains('active')) {
-                console.log(activePlayersList[i].childNodes[1].firstElementChild.innerHTML = playercount)
+                let counterPoints = ++this.counter[i];
+                activePlayersList[i].childNodes[1].firstElementChild.innerHTML = counterPoints;
             }
-            // if (player1.classList.contains('active')) {
-            //     this.counter1++;
-            //     player1Counter.innerText = this.counter1;
-            // } else if (player2.classList.contains('active')) {
-            //     this.counter2++;
-            //     player2Counter.innerText = this.counter2;
-            // }
         }
     },
 
     whoWin : function() {
-        if(this.counter1 + this.counter2 === this.cards) {
-            if (this.counter1 > this.counter2) {
-                alert('Player 1 win! With score: '+ this.counter1 + ' time ' + min+':'+sec);
-                stopTimer();
-            } else if (this.counter1 < this.counter2) {
-                alert('Player 2 win! With score: '+ this.counter2 + ' time ' + min+':'+sec);
+        let sum = this.counter.reduce((a, b) => a + b, 0);
+        if(sum === this.cards) {
+            if (Math.max.apply(null, this.counter)) {
+                let result = Math.max.apply(null, this.counter);
+                let player = 0;
+                for (var i=0; i<this.counter.length; i++)
+                    if (this.counter[i] === result)
+                        player = ++i;
+                console.log( "Wygrywa user " + player + " z wynikiem " + result);
                 stopTimer();
             } else {
                 alert (`It's a tie`);
@@ -290,7 +282,7 @@ function stopTimer () {
 };
 /* end timer */
 
-/* modal */
+/* modal reset */
 const modalReset = document.getElementById('modal__reset');
 const modalResetBtn = document.querySelector('.btn-reset');
 const modalResetNo = document.getElementById('modal__reset--no');
@@ -312,20 +304,49 @@ modalResetBtn.addEventListener('click', event => {
 modalResetNo.addEventListener('click', event => {
     event.preventDefault();
     modalResetOff();
-})
+});
 
 modalResetYes.addEventListener('click', event => {
     event.preventDefault();
     modalResetOff();
     stopTimer();
     startTimer = setInterval(timer, 1000);
-    memory.initGame();
-    memory.startGame();
     activePlayers.innerHTML = '';
-    memory.generatePlayers();
-})
+    memory.startGame();
+});
 
-/* end modal */
+/* end modal reset */
+
+/* modal back to list player */
+const modalBack = document.getElementById('modal__back-list-player');
+const modalBackYes = document.getElementById('modal__back-list-player--yes');
+const modalBackNo = document.getElementById('modal__back-list-player--no');
+
+function modalBackOn() {
+    modalBack.classList.add('modal--show');
+};
+
+function modalBackOff() {
+    modalBack.classList.remove('modal--show');
+};
+
+backBtn.addEventListener('click', event => {
+    event.preventDefault();
+    modalBackOn();
+});
+
+modalBackNo.addEventListener('click', event => {
+    event.preventDefault();
+    modalBackOff();
+});
+
+modalBackYes.addEventListener('click', event => {
+    event.preventDefault();
+    resetView();
+    modalBackOff();
+});
+
+/* end modal back to list player */
 
 startBtn.addEventListener('click', event => {
     event.preventDefault();
@@ -335,8 +356,7 @@ startBtn.addEventListener('click', event => {
     startTimer = setInterval(timer, 1000);
 });
 
-backBtn.addEventListener('click', event => {
-    event.preventDefault();
+function resetView() {
     activePlayers.innerHTML = '';
     tempPlayers = [];
     memoryGame.style.display = 'none';
@@ -344,5 +364,15 @@ backBtn.addEventListener('click', event => {
     gameList.style.display = 'flex';
     memory.initGame();
     stopTimer();
-});
+}
 
+// backBtn.addEventListener('click', event => {
+//     event.preventDefault();
+//     activePlayers.innerHTML = '';
+//     tempPlayers = [];
+//     memoryGame.style.display = 'none';
+//     scoreTable.style.display = '';
+//     gameList.style.display = 'flex';
+//     memory.initGame();
+//     stopTimer();
+// });
