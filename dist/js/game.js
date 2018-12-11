@@ -15,7 +15,7 @@ const memory = {
     secondchoice : [],
     memoryList : document.querySelector('.memory-game__list'),
     counter : [],
-    cards : 2,
+    cards : 18,
     sec : 0,
     min : 0,
     npCounter : 0,
