@@ -125,7 +125,6 @@ const memory = {
             activePlayers.appendChild(newPlayer);
             activePlayersList.push(newPlayer);
             activePlayersList[0].classList.add('active');
-            console.log(activePlayersList)
         }
     },
 
@@ -212,15 +211,12 @@ const memory = {
     nextPlayer: function () {
         this.click = 0;
         this.npCounter++;
-        console.log('npCounter', this.npCounter)
         for (let i = 0; i < activePlayersList.length; i++) {
             if (this.npCounter+1 > activePlayersList.length) {
                 this.npCounter = 0;
-                console.log('pierwszy if', this.npCounter, activePlayersList.length)
             } else {
                 if (activePlayersList[i].classList.contains('active')) {
                     activePlayersList[i].classList.remove('active');
-                    console.log('drugi if', this.npCounter)
                     if (activePlayersList[this.npCounter] < activePlayersList){
                         activePlayersList[this.npCounter].classList.add('active');
                     }
@@ -248,14 +244,29 @@ const memory = {
                 for (var i=0; i<this.counter.length; i++)
                     if (this.counter[i] === result)
                         player = ++i;
-                console.log( "Wygrywa user " + player + " z wynikiem " + result);
+                let whoWinContent = document.getElementById('whoWin');
+                let winnerSec = (sec % 60).toString().padStart(2, "0");
+                let winnerMin = Math.floor(sec / 60).toString().padStart(2, "0");
+                whoWinContent.innerHTML = "Winner is player number: " + player + "<br />" + " with score: " + result + "<br />" + "time: " + winnerMin +" min "+ winnerSec + "sec" ;
                 stopTimer();
+                modalEndOn();
             } else {
-                alert (`It's a tie`);
                 stopTimer();
+                modalEndOn();
             }
         }
     },
+
+    resetView : function() {
+        activePlayers.innerHTML = '';
+        tempPlayers = [];
+        memoryGame.style.display = 'none';
+        scoreTable.style.display = '';
+        gameList.style.display = 'flex';
+        memory.initGame();
+        stopTimer();
+    },
+
 } // end object memory
 
 /* timer */
@@ -342,11 +353,41 @@ modalBackNo.addEventListener('click', event => {
 
 modalBackYes.addEventListener('click', event => {
     event.preventDefault();
-    resetView();
+    memory.resetView();
     modalBackOff();
 });
 
 /* end modal back to list player */
+
+/* modal end game */
+const modalEnd = document.getElementById('modal__end-game');
+const modalEndNG = document.getElementById('modal__end-game--new-game');
+const modalEndBack = document.getElementById('modal__end-game--back');
+
+function modalEndOn() {
+    modalEnd.classList.add('modal--show');
+};
+
+function modalEndOff() {
+    modalEnd.classList.remove('modal--show');
+};
+
+modalEndNG.addEventListener('click', event => {
+    event.preventDefault();
+    activePlayers.innerHTML = '';
+    memory.initGame();
+    memory.startGame();
+    modalEndOff();
+    startTimer = setInterval(timer, 1000);
+});
+
+modalEndBack.addEventListener('click', event => {
+    event.preventDefault();
+    memory.resetView();
+    modalEndOff();
+});
+
+/* end modal end game */
 
 startBtn.addEventListener('click', event => {
     event.preventDefault();
@@ -356,23 +397,4 @@ startBtn.addEventListener('click', event => {
     startTimer = setInterval(timer, 1000);
 });
 
-function resetView() {
-    activePlayers.innerHTML = '';
-    tempPlayers = [];
-    memoryGame.style.display = 'none';
-    scoreTable.style.display = '';
-    gameList.style.display = 'flex';
-    memory.initGame();
-    stopTimer();
-}
 
-// backBtn.addEventListener('click', event => {
-//     event.preventDefault();
-//     activePlayers.innerHTML = '';
-//     tempPlayers = [];
-//     memoryGame.style.display = 'none';
-//     scoreTable.style.display = '';
-//     gameList.style.display = 'flex';
-//     memory.initGame();
-//     stopTimer();
-// });
