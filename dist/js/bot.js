@@ -26,6 +26,11 @@ function test() {
     counter++;
 };
 
+function run() {
+setInterval(test,1000);
+console.log('run')
+}
+
 /*
 function test() {
     let arr = [];
