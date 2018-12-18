@@ -1,10 +1,63 @@
+counter = 0;
+
+function test() {
+    let el = document.querySelectorAll('.memory-game__item');
+    let arr = Array.prototype.slice.call(el);
+    console.log(arr)
+
+    for (let i = 0; i < arr.length; i++ ) {
+
+        if (arr[counter].dataset.name === arr[i].dataset.name){
+            arr[counter].click();
+            arr[i].click();
+            console.log('arrcounter', arr[counter])
+            console.log('counter', counter)
+            arr.splice(counter, 1);
+            arr.splice(i, 1);
+            console.log('parentnode', arr[counter.parentNode])
+        }
+
+
+        // console.log(arr[i].dataset.name)
+        // if (el[0].dateset.name === el[i].dataset.name) {
+        //   console.log('i found', el[i].dataset.name)
+        // }
+    }
+    counter++;
+};
+
+/*
 function test() {
     let arr = [];
-    let el = document.querySelectorAll('.memory-game__item').dataset.name;
+    let el = document.querySelectorAll('.memory-game__item')
+    console.log(el)
+
     for (let i = 0; i < el.length; i++ ) {
-        el.click();
+
+        if (el[counter].dataset.name === el[i].dataset.name){
+            el[counter].click();
+            el[i].click();
+            console.log('elcounter', el[counter])
+            console.log('counter', counter)
+            // el.splice(0, 1);
+            // el.splice(1, 1);
+            console.log(el)
+        }
+
+
+        // console.log(arr[i].dataset.name)
+        // if (el[0].dateset.name === el[i].dataset.name) {
+        //   console.log('i found', el[i].dataset.name)
+        // }
     }
+    counter++;
 };
+*/
+
+
+
+
+
 
 
 // selectCard : function(e) {
