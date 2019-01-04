@@ -7,4 +7,4 @@ In game there is a bot
 How use it:
 1. Copy all code from /dist/js/bot.js
 2. Paste it on console
-3. Tap "run()" and press enter ;)
+3. Press enter and enjoy :)
