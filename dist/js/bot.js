@@ -1,11 +1,12 @@
 counter = 0;
 
+
 let el = document.querySelectorAll('.memory-game__item');
 let arr = Array.prototype.slice.call(el);
 
 function test() {
 
-    if (counter < 19) {
+    if (counter < el.length) {
         for (let i = arr.length; i--;) {
             if (arr[0].dataset.name === arr[i].dataset.name) {
                 arr[0].click();
@@ -22,7 +23,7 @@ function run() {
     setInterval(test,1000);
 }
 
-
+run();
 
 
 
