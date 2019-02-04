@@ -241,7 +241,7 @@ const memory = {
             if (Math.max.apply(null, this.counter)) {
                 let result = Math.max.apply(null, this.counter);
                 let player = 0;
-                for (let i=0; i < this.counter.length; i++)
+                for (var i=0; i<this.counter.length; i++)
                     if (this.counter[i] === result)
                         player = ++i;
                 let whoWinContent = document.getElementById('whoWin');
