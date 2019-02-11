@@ -6,5 +6,11 @@ export default class Player {
         this.turn = turn;
     }
 
+    score(){
 
+    }
+
+    isPlaying() {
+
+    }
 }

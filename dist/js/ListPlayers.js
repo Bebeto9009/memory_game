@@ -1,7 +1,7 @@
 export default class ListPlayers {
 
-    constructor(name) {
-        this.name = name;
+    constructor(id) {
+        this.id = id;
 }
 
     addRow() {
@@ -35,8 +35,10 @@ export default class ListPlayers {
         playersRow.appendChild(removePlayer);
     }
 
-    savePlayer() {
-
+    savePlayer(e) {
+                e.target.parentNode.childNodes[0].disabled = true; // disable name input
+                e.target.parentElement.childNodes[1].style.display = 'block'; // show edit icon
+                e.target.parentElement.childNodes[2].style.display = 'none'; // hide check icon
     }
 
     editPlayer() {
