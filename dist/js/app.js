@@ -29,6 +29,7 @@ document.querySelector('.game__section').addEventListener('click', (event) => {
     if (event.target.className.includes('fa-check')) {
        // console.log('id: ',event.target.parentElement.id);
        let clickedElement = event.target.parentElement.id;
+       console.log('this', event)
        // console.log(clickedElement);
        clickedElement.savePlayer();
         // console.log(event.target.parentElement.parentNode);

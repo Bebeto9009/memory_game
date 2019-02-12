@@ -36,7 +36,8 @@ class ListPlayers {
         playersRow.appendChild(removePlayer);
     }
 
-    savePlayer(e) {
+    savePlayer(rowId) {
+        console.log('test savePlayer')
                 e.target.parentNode.childNodes[0].disabled = true; // disable name input
                 e.target.parentElement.childNodes[1].style.display = 'block'; // show edit icon
                 e.target.parentElement.childNodes[2].style.display = 'none'; // hide check icon
