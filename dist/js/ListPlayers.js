@@ -1,16 +1,17 @@
-export default class ListPlayers {
+class ListPlayers {
 
-    constructor(id) {
-        this.id = id;
+    constructor(rowId) {
+        this.rowId = rowId;
 }
 
-    addRow() {
+    addRow(rowId) {
         let list = document.querySelector('.game__section');
         let ol = document.querySelector('ol');
         let playerLi = document.createElement('li');
 
         let playersRow = document.createElement('div');
         playersRow.classList.add('user');
+        playersRow.id = rowId;
 
         let namePlayer = document.createElement('input');
         namePlayer.classList.add('user__name');
@@ -50,3 +51,4 @@ export default class ListPlayers {
     }
 }
 
+export default ListPlayers;

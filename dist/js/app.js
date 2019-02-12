@@ -1,4 +1,4 @@
-/* import classes */
+/* Import classes */
 import ListPlayers from './ListPlayers.js';
 import Player from './Player.js';
 
@@ -8,18 +8,30 @@ const firstPlayer = 'https://raw.githubusercontent.com/Bebeto9009/memory_game/ma
 /* Add event listener on add new player button */
 let btnNewPlayer = document.querySelector('.btn-add');
 
+let generatorID = 0;
+// let objects = [];
+
 btnNewPlayer.addEventListener('click', function(event) {
     event.preventDefault();
-    const player = new ListPlayers();
-    player.addRow();
-    console.log(player)
-}); // create row for new player
+    generatorID++;
+    // console.log(generatorID)
+    let row = new ListPlayers(generatorID);
+    row.addRow(generatorID);
+    // objects.push(row);
+    // console.log('objects', objects)
+    console.log(row);
+    console.log('ListPlayers.id',ListPlayers.id)
 
-/* event listener on accept button */
-    document.addEventListener('click', (event) => {
+}); // Listener for create row for new player
+
+/* Event listener on accept button */
+document.querySelector('.game__section').addEventListener('click', (event) => {
     if (event.target.className.includes('fa-check')) {
-        console.log('dziala')
-        ListPlayers.savePlayer(event);
+       // console.log('id: ',event.target.parentElement.id);
+       let clickedElement = event.target.parentElement.id;
+       // console.log(clickedElement);
+       clickedElement.savePlayer();
+        // console.log(event.target.parentElement.parentNode);
     }
 });
 
