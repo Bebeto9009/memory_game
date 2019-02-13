@@ -5,9 +5,9 @@ export default class Player {
     }
 
 
-    newPlayer() {
-        // let list = document.querySelector('.game__section');
-        // let ol = document.querySelector('ol');
+    addPlayer() {
+        let list = document.querySelector('.game__section');
+        let ol = document.querySelector('ol');
         let playerLi = document.createElement('li');
 
         let playersRow = document.createElement('div');
@@ -26,9 +26,9 @@ export default class Player {
 
         let acceptNewPlayer = document.createElement('i');
         acceptNewPlayer.classList.add('fas', 'fa-check');
-        //
-        // list.appendChild(ol);
-        // ol.appendChild(playerLi);
+
+        list.appendChild(ol);
+        ol.appendChild(playerLi);
         playerLi.appendChild(playersRow);
         playersRow.appendChild(namePlayer);
         playersRow.appendChild(editPlayer);
