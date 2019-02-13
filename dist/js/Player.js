@@ -1,7 +1,10 @@
 export default class Player {
 
-    constructor() {
+    constructor(name) {
+        this.name = name;
         this.el = document.createElement('div');
+        this.player = document.createElement('input');
+        this.el = document.createElement('div').appendChild(this.player);
     }
 
 

@@ -6,6 +6,6 @@ import Game from './Game.js';
 const firstPlayer = 'https://raw.githubusercontent.com/Bebeto9009/memory_game/master/player.json';
 
 document.addEventListener('DOMContentLoaded', function(){
-    const listener = new List(document.querySelector('.btn-add'));
-    listener.init();
+    const list = new List(document.querySelector('.game__section--list'), document.querySelector('.btn-add'));
+    list.init();
 }, false);
